@@ -1,0 +1,50 @@
+[
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/dataflowProtection.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/dataflowProtection.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/cloning.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/cloning.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/synchronization.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/synchronization.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/utils.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/utils.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/utils.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/utils.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/verification.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/verification.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/interface.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/interface.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/interface.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/interface.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o dataflowProtection/CMakeFiles/DataflowProtection.dir/inspection.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/inspection.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/inspection.cpp",
+  "output": "dataflowProtection/CMakeFiles/DataflowProtection.dir/inspection.cpp.o"
+},
+{
+  "directory": "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+  "command": "/usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -fdiagnostics-color -g -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -o TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.o -c /home/th3g3ntl3man/Documents/work/UA/COAST/projects/TMR/TMRNewPM.cpp",
+  "file": "/home/th3g3ntl3man/Documents/work/UA/COAST/projects/TMR/TMRNewPM.cpp",
+  "output": "TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.o"
+}
+]

@@ -1,0 +1,179 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						1,
+						3,
+						8,
+						9
+					]
+				},
+				{
+					"build" : "dataflowProtection",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-dataflowProtection-Debug-774f2928e6ae2f255101.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "dataflowProtection",
+					"targetIndexes" : 
+					[
+						0,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "TMR",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-TMR-Debug-c5532322b8e18e59a375.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "TMR",
+					"targetIndexes" : 
+					[
+						2,
+						6,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2
+					],
+					"name" : "coast",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "DataflowProtection::@0fbbaf687bf60a5a221d",
+					"jsonFile" : "target-DataflowProtection-Debug-672cd7875e87ff8aae37.json",
+					"name" : "DataflowProtection",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "RISCVTargetParserTableGen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-RISCVTargetParserTableGen-Debug-e07ec01f365caa7f7456.json",
+					"name" : "RISCVTargetParserTableGen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "TMR::@79d09d8f8ad4ba6ebeab",
+					"jsonFile" : "target-TMR-Debug-fd47c01e332722f4325c.json",
+					"name" : "TMR",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "acc_gen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-acc_gen-Debug-2d23b51faf2c98f8dfb2.json",
+					"name" : "acc_gen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "install-DataflowProtection::@0fbbaf687bf60a5a221d",
+					"jsonFile" : "target-install-DataflowProtection-Debug-f611f373977da1e14f0d.json",
+					"name" : "install-DataflowProtection",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "install-DataflowProtection-stripped::@0fbbaf687bf60a5a221d",
+					"jsonFile" : "target-install-DataflowProtection-stripped-Debug-b51d2308b9074769b8d6.json",
+					"name" : "install-DataflowProtection-stripped",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "install-TMR::@79d09d8f8ad4ba6ebeab",
+					"jsonFile" : "target-install-TMR-Debug-25a89fe36ee06381c89e.json",
+					"name" : "install-TMR",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "install-TMR-stripped::@79d09d8f8ad4ba6ebeab",
+					"jsonFile" : "target-install-TMR-stripped-Debug-3954defcc317eba24ad0.json",
+					"name" : "install-TMR-stripped",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "intrinsics_gen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-intrinsics_gen-Debug-b7fea950c774357ba128.json",
+					"name" : "intrinsics_gen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "omp_gen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-omp_gen-Debug-e895fe3ca33686d5a1d5.json",
+					"name" : "omp_gen",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/th3g3ntl3man/Documents/work/UA/COAST/build",
+		"source" : "/home/th3g3ntl3man/Documents/work/UA/COAST/projects"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

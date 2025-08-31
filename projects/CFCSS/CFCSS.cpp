@@ -87,12 +87,15 @@ std::string CFCSS::BBNode::printNode(){
 void CFCSS::insertErrorFunction(Module &M, StringRef name) {
 	Type* t_void = Type::getVoidTy(M.getContext());
 
-	Constant* c = M.getOrInsertFunction(name, t_void, NULL);
+    auto FTy = FunctionType::get(t_void, /*isVarArg=*/false);
+    auto callee = M.getOrInsertFunction(name, FTy);
+    Constant* c = dyn_cast<Constant>(callee.getCallee());
 	Function* errorFn = dyn_cast<Function>(c);
 	assert(errorFn && "Error detection function is non-void");
 
-	Constant* abortC = M.getOrInsertFunction("abort", t_void, NULL);
-	Function* abortF = dyn_cast<Function>(abortC);
+    auto ATy = FunctionType::get(t_void, /*isVarArg=*/false);
+    auto abortC = M.getOrInsertFunction("abort", ATy);
+    Function* abortF = dyn_cast<Function>(abortC.getCallee());
 	assert(abortF && "Abort function detected");
 
 	//Create a basic block that calls abort
@@ -482,8 +485,8 @@ GlobalVariable* CFCSS::setUpGlobal(Module &M, StringRef vName, IntegerType* IT1)
 	RTS->setConstant(false);
 	RTS->setInitializer(CI);
 	RTS->setLinkage(GlobalVariable::CommonLinkage);
-	RTS->setUnnamedAddr( GlobalValue::UnnamedAddr() );
-	RTS->setAlignment(4);
+    RTS->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
+    RTS->setAlignment(Align(4));
 	return RTS;
 }
 

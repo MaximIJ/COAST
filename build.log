@@ -1,0 +1,402 @@
+[ 20%] Built target TMR
+[ 30%] Building CXX object dataflowProtection/CMakeFiles/DataflowProtection.dir/cloning.cpp.o
+[ 40%] Building CXX object dataflowProtection/CMakeFiles/DataflowProtection.dir/synchronization.cpp.o
+[ 50%] Building CXX object dataflowProtection/CMakeFiles/DataflowProtection.dir/verification.cpp.o
+In file included from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:3:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:58:8: warning: ‘virtual bool dataflowProtection::runOnModule(llvm::Module&)’ can be marked override [-Wsuggest-override]
+   58 |   bool runOnModule(Module&M);
+      |        ^~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:60:8: warning: ‘virtual void dataflowProtection::getAnalysisUsage(llvm::AnalysisUsage&) const’ can be marked override [-Wsuggest-override]
+   60 |   void getAnalysisUsage(AnalysisUsage& AU) const ;
+      |        ^~~~~~~~~~~~~~~~
+In file included from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:8:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:58:8: warning: ‘virtual bool dataflowProtection::runOnModule(llvm::Module&)’ can be marked override [-Wsuggest-override]
+   58 |   bool runOnModule(Module&M);
+      |        ^~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:60:8: warning: ‘virtual void dataflowProtection::getAnalysisUsage(llvm::AnalysisUsage&) const’ can be marked override [-Wsuggest-override]
+   60 |   void getAnalysisUsage(AnalysisUsage& AU) const ;
+      |        ^~~~~~~~~~~~~~~~
+In file included from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:7:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:58:8: warning: ‘virtual bool dataflowProtection::runOnModule(llvm::Module&)’ can be marked override [-Wsuggest-override]
+   58 |   bool runOnModule(Module&M);
+      |        ^~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:60:8: warning: ‘virtual void dataflowProtection::getAnalysisUsage(llvm::AnalysisUsage&) const’ can be marked override [-Wsuggest-override]
+   60 |   void getAnalysisUsage(AnalysisUsage& AU) const ;
+      |        ^~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::populateSyncPoints(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:148:62: warning: unused variable ‘unreach’ [-Wunused-variable]
+  148 |                                         if (UnreachableInst* unreach = dyn_cast<UnreachableInst>(&I))
+      |                                                              ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::syncTerminator(llvm::Instruction*, llvm::GlobalVariable*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:836:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint64_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  836 |                         for (int i = 0; i < nTypes; i+=1) {
+      |                                         ~~^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:899:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint64_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  899 |                         for (int i = 0; i < nTypes; i+=1) {
+      |                                         ~~^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:995:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘uint64_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  995 |                         for (int i = 0; i < nTypes; i+=1) {
+      |                                         ~~^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1067:44: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<llvm::CmpInst*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1067 |                                 } while (i < eCmp.size()-1);
+      |                                          ~~^~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::insertErrorFunction(llvm::Module&, int)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1272:19: warning: unused variable ‘new_abort’ [-Wunused-variable]
+ 1272 |         CallInst* new_abort = CallInst::Create(abortF, "", bb);
+      |                   ^~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1273:26: warning: unused variable ‘term’ [-Wunused-variable]
+ 1273 |         UnreachableInst* term = new UnreachableInst(M.getContext(), bb);
+      |                          ^~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::createErrorBlocks(llvm::Module&, int)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1309:34: warning: unused variable ‘term’ [-Wunused-variable]
+ 1309 |                 UnreachableInst* term = new UnreachableInst(errBlock->getContext(),
+      |                                  ^~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::insertTMRDetectionFlag(llvm::Instruction*, llvm::GlobalVariable*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1340:16: warning: unused variable ‘clone1’ [-Wunused-variable]
+ 1340 |         Value* clone1 = getClone(orig).first;
+      |                ^~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1357:16: warning: unused variable ‘SI’ [-Wunused-variable]
+ 1357 |     StoreInst* SI = new StoreInst(BI, TMRErrorDetected, false, Align(TMRErrorDetected->getAlign().valueOrOne()), nextInst);
+      |                ^~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::insertTMRCorrectionCount(llvm::Instruction*, llvm::GlobalVariable*, bool)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1432:28: warning: unused variable ‘SI’ [-Wunused-variable]
+ 1432 |                 StoreInst* SI = new StoreInst(incSyncCounter, dynamicSyncCount, cmpInst);
+      |                            ^~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1389:16: warning: unused variable ‘clone1’ [-Wunused-variable]
+ 1389 |         Value* clone1 = getClone(orig).first;
+      |                ^~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1439:16: warning: unused variable ‘SI’ [-Wunused-variable]
+ 1439 |     StoreInst* SI = new StoreInst(BI, TMRErrorDetected, false, Align(TMRErrorDetected->getAlign().valueOrOne()), errBlock);
+      |                ^~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1451:21: warning: unused variable ‘returnToBB’ [-Wunused-variable]
+ 1451 |         BranchInst* returnToBB = BranchInst::Create(originalBlockContinued, errBlock);
+      |                     ^~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp: In member function ‘void dataflowProtection::insertStackProtection(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1692:36: warning: unused variable ‘storeRetAddr’ [-Wunused-variable]
+ 1692 |                         StoreInst* storeRetAddr = new StoreInst(castRetVal_TMR,
+      |                                    ^~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1724:93: error: no matching function for call to ‘llvm::LoadInst::LoadInst(llvm::Type*&, llvm::AllocaInst*&, const char [12])’
+ 1724 |                         LoadInst* loadRet = new LoadInst(glblType, retAddrLcl, "loadRetAddr");
+      |                                                                                             ^
+In file included from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:12:
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:209:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::BasicBlock*)’
+  209 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:209:3: note:   candidate expects 8 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:205:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::Instruction*)’
+  205 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:205:3: note:   candidate expects 8 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:203:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::BasicBlock*)’
+  203 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:203:3: note:   candidate expects 6 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:201:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::Instruction*)’
+  201 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:201:3: note:   candidate expects 6 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:199:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::BasicBlock*)’
+  199 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:199:3: note:   candidate expects 5 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:197:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Instruction*)’
+  197 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:197:3: note:   candidate expects 5 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:196:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, llvm::BasicBlock*)’
+  196 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:196:3: note:   candidate expects 4 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:194:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, llvm::Instruction*)’
+  194 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:194:3: note:   candidate expects 4 arguments, 3 provided
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1742:110: error: no matching function for call to ‘llvm::LoadInst::LoadInst(llvm::Type*&, llvm::AllocaInst*&, const char [16])’
+ 1742 |                                 LoadInst* loadRet2 = new LoadInst(glblType, retAddrLcl_TMR, "loadRetAddr_TMR");
+      |                                                                                                              ^
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:209:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::BasicBlock*)’
+  209 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:209:3: note:   candidate expects 8 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:205:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::Instruction*)’
+  205 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:205:3: note:   candidate expects 8 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:203:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::BasicBlock*)’
+  203 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:203:3: note:   candidate expects 6 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:201:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Align, llvm::Instruction*)’
+  201 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:201:3: note:   candidate expects 6 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:199:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::BasicBlock*)’
+  199 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:199:3: note:   candidate expects 5 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:197:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, bool, llvm::Instruction*)’
+  197 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, bool isVolatile,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:197:3: note:   candidate expects 5 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:196:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, llvm::BasicBlock*)’
+  196 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:196:3: note:   candidate expects 4 arguments, 3 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:194:3: note: candidate: ‘llvm::LoadInst::LoadInst(llvm::Type*, llvm::Value*, const llvm::Twine&, llvm::Instruction*)’
+  194 |   LoadInst(Type *Ty, Value *Ptr, const Twine &NameStr,
+      |   ^~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:194:3: note:   candidate expects 4 arguments, 3 provided
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1762:44: warning: unused variable ‘storeAddrRetAddr’ [-Wunused-variable]
+ 1762 |                                 StoreInst* storeAddrRetAddr = new StoreInst(
+      |                                            ^~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1679:28: warning: unused variable ‘storeRetAddr’ [-Wunused-variable]
+ 1679 |                 StoreInst* storeRetAddr = new StoreInst(
+      |                            ^~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/synchronization.cpp:1629:26: warning: unused variable ‘noArgsType’ [-Wunused-variable]
+ 1629 |         ArrayRef<Type*>* noArgsType = new ArrayRef<Type*>(std::vector<Type*>());
+      |                          ^~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In function ‘llvm::Instruction* hasStoreUsage(llvm::Value*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:94:38: warning: unused variable ‘cmpUse’ [-Wunused-variable]
+   94 |                         if (CmpInst* cmpUse = dyn_cast<CmpInst>(instUse)) {
+      |                                      ^~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:101:46: warning: unused variable ‘callUse’ [-Wunused-variable]
+  101 |                         } else if (CallInst* callUse = dyn_cast<CallInst>(instUse)) {
+      |                                              ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:99:40: warning: unused variable ‘storeUse’ [-Wunused-variable]
+   99 |                         if (StoreInst* storeUse = dyn_cast<StoreInst>(instUse)) {
+      |                                        ^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In function ‘llvm::Instruction* isDereferenced(llvm::Instruction*, llvm::Instruction*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:131:46: warning: unused variable ‘callUse’ [-Wunused-variable]
+  131 |                         } else if (CallInst* callUse = dyn_cast<CallInst>(instUse)) {
+      |                                              ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:129:55: warning: unused variable ‘gepUse’ [-Wunused-variable]
+  129 |                         } else if (GetElementPtrInst* gepUse = dyn_cast<GetElementPtrInst>(instUse)) {
+      |                                                       ^~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:127:40: warning: unused variable ‘storeUse’ [-Wunused-variable]
+  127 |                         if (StoreInst* storeUse = dyn_cast<StoreInst>(instUse)) {
+      |                                        ^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In function ‘llvm::AllocaInst* findAllocaInst(llvm::Instruction*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:225:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  225 |         for (int i = 0; i < inst->getNumOperands(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In member function ‘bool dataflowProtection::comesFromSingleCall(llvm::Instruction*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:328:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  328 |         for (int i = 0; i < storeUse->getNumOperands(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In function ‘long int getCallArgIndex(llvm::Instruction*, llvm::CallInst*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:406:34: warning: unused variable ‘nextUse’ [-Wunused-variable]
+  406 |                 if (Instruction* nextUse = dyn_cast<Instruction>(use)) {
+      |                                  ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp: In member function ‘void dataflowProtection::verifyOptions(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:76: error: ‘Operator’ was not declared in this scope; did you mean ‘operator=’?
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                            ^~~~~~~~
+      |                                                                            operator=
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:85: error: no matching function for call to ‘cast<<expression error> >(llvm::ConstantExpr*&)’
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                       ~~~~~~~~~~~~~~^~~~
+In file included from /usr/lib/llvm-16/include/llvm/Support/CBindingWrapping.h:17,
+                 from /usr/lib/llvm-16/include/llvm/PassRegistry.h:22,
+                 from /usr/lib/llvm-16/include/llvm/PassSupport.h:29,
+                 from /usr/lib/llvm-16/include/llvm/Pass.h:348,
+                 from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:10:
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:566:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(const From&)’
+  566 | [[nodiscard]] inline decltype(auto) cast(const From &Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:566:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:85: error: template argument 1 is invalid
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                       ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:572:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(From&)’
+  572 | [[nodiscard]] inline decltype(auto) cast(From &Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:572:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:85: error: template argument 1 is invalid
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                       ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:578:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(From*)’
+  578 | [[nodiscard]] inline decltype(auto) cast(From *Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:578:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:85: error: template argument 1 is invalid
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                       ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:584:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(std::unique_ptr<From>&&)’
+  584 | [[nodiscard]] inline decltype(auto) cast(std::unique_ptr<From> &&Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:584:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:756:85: error: template argument 1 is invalid
+  756 |                 if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                       ~~~~~~~~~~~~~~^~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:80: error: ‘Operator’ was not declared in this scope; did you mean ‘operator=’?
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                                ^~~~~~~~
+      |                                                                                operator=
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:89: error: no matching function for call to ‘cast<<expression error> >(llvm::ConstantExpr*&)’
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                           ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:566:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(const From&)’
+  566 | [[nodiscard]] inline decltype(auto) cast(const From &Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:566:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:89: error: template argument 1 is invalid
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                           ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:572:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(From&)’
+  572 | [[nodiscard]] inline decltype(auto) cast(From &Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:572:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:89: error: template argument 1 is invalid
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                           ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:578:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(From*)’
+  578 | [[nodiscard]] inline decltype(auto) cast(From *Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:578:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:89: error: template argument 1 is invalid
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                           ~~~~~~~~~~~~~~^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:584:37: note: candidate: ‘template<class To, class From> decltype(auto) llvm::cast(std::unique_ptr<From>&&)’
+  584 | [[nodiscard]] inline decltype(auto) cast(std::unique_ptr<From> &&Val) {
+      |                                     ^~~~
+/usr/lib/llvm-16/include/llvm/Support/Casting.h:584:37: note:   template argument deduction/substitution failed:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:823:89: error: template argument 1 is invalid
+  823 |                     if (CE->getOpcode() == Instruction::GetElementPtr && !cast<Operator>(CE)->hasIndices()) {
+      |                                                                           ~~~~~~~~~~~~~~^~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/verification.cpp:1005:36: warning: comparison of integer expressions of different signedness: ‘long int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1005 |                         if (argIdx >= calledFunction->arg_size()) {
+      |                             ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘void dataflowProtection::cloneFunctionArguments(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:527:74: warning: unused variable ‘opf’ [-Wunused-variable]
+  527 |                                                                 if (auto opf = dyn_cast<Function>(*op3)) {
+      |                                                                          ^~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:634:44: warning: unused variable ‘ca’ [-Wunused-variable]
+  634 |                         if (ConstantArray* ca = dyn_cast<ConstantArray>(u)) {
+      |                                            ^~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:850:48: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  850 |                                 for (int i=0; i<ca->getNumOperands(); i++) {
+      |                                               ~^~~~~~~~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:868:67: warning: variable ‘callArgs’ set but not used [-Wunused-but-set-variable]
+  868 |                                                 ArrayRef<Value*>* callArgs;
+      |                                                                   ^~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘void dataflowProtection::cloneFunctionReturnVals(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1138:22: warning: variable ‘argList’ set but not used [-Wunused-but-set-variable]
+ 1138 |                 auto argList = fType->params();
+      |                      ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1208:29: warning: unused variable ‘entryBB’ [-Wunused-variable]
+ 1208 |                 BasicBlock& entryBB = newFunc->getEntryBlock();
+      |                             ^~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘void dataflowProtection::updateRRFuncs(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1287:62: error: no matching function for call to ‘llvm::StoreInst::StoreInst(llvm::Argument*, llvm::AllocaInst*&)’
+ 1287 |                 storeRetAddr1 = new StoreInst(&*argIt, alloc1);
+      |                                                              ^
+In file included from /home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/dataflowProtection.h:12:
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:329:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::BasicBlock*)’
+  329 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:329:3: note:   candidate expects 7 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:326:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::Instruction*)’
+  326 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:326:3: note:   candidate expects 7 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:324:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::BasicBlock*)’
+  324 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:324:3: note:   candidate expects 5 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:322:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::Instruction*)’
+  322 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:322:3: note:   candidate expects 5 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:321:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::BasicBlock*)’
+  321 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:321:3: note:   candidate expects 4 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:320:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Instruction*)’
+  320 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Instruction *InsertBefore);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:320:3: note:   candidate expects 4 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:319:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, llvm::BasicBlock*)’
+  319 |   StoreInst(Value *Val, Value *Ptr, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:319:3: note:   candidate expects 3 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:318:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, llvm::Instruction*)’
+  318 |   StoreInst(Value *Val, Value *Ptr, Instruction *InsertBefore);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:318:3: note:   candidate expects 3 arguments, 2 provided
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1291:74: error: no matching function for call to ‘llvm::StoreInst::StoreInst(llvm::Argument*, llvm::AllocaInst*&)’
+ 1291 |                         storeRetAddr2 = new StoreInst(&*(argIt+1), alloc2);
+      |                                                                          ^
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:329:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::BasicBlock*)’
+  329 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:329:3: note:   candidate expects 7 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:326:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::AtomicOrdering, llvm::SyncScope::ID, llvm::Instruction*)’
+  326 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:326:3: note:   candidate expects 7 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:324:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::BasicBlock*)’
+  324 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:324:3: note:   candidate expects 5 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:322:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Align, llvm::Instruction*)’
+  322 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Align Align,
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:322:3: note:   candidate expects 5 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:321:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::BasicBlock*)’
+  321 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:321:3: note:   candidate expects 4 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:320:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, bool, llvm::Instruction*)’
+  320 |   StoreInst(Value *Val, Value *Ptr, bool isVolatile, Instruction *InsertBefore);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:320:3: note:   candidate expects 4 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:319:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, llvm::BasicBlock*)’
+  319 |   StoreInst(Value *Val, Value *Ptr, BasicBlock *InsertAtEnd);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:319:3: note:   candidate expects 3 arguments, 2 provided
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:318:3: note: candidate: ‘llvm::StoreInst::StoreInst(llvm::Value*, llvm::Value*, llvm::Instruction*)’
+  318 |   StoreInst(Value *Val, Value *Ptr, Instruction *InsertBefore);
+      |   ^~~~~~~~~
+/usr/lib/llvm-16/include/llvm/IR/Instructions.h:318:3: note:   candidate expects 3 arguments, 2 provided
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1486:30: error: ‘class llvm::PointerType’ has no member named ‘getElementType’; did you mean ‘getArrayElementType’?
+ 1486 |                         pt1->getElementType(), callAlloca1, newInst->getName() + ".DWC", false, Align(1));
+      |                              ^~~~~~~~~~~~~~
+      |                              getArrayElementType
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1492:34: error: ‘class llvm::PointerType’ has no member named ‘getElementType’; did you mean ‘getArrayElementType’?
+ 1492 |                             pt2->getElementType(), callAlloca2, newInst->getName() + ".TMR", false, Align(1));
+      |                                  ^~~~~~~~~~~~~~
+      |                                  getArrayElementType
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘void dataflowProtection::updateCallInsns(llvm::Module&)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1700:77: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+ 1700 |                                                 for (int argNum = 0; argNum < numArgs; ++argNum) {
+      |                                                                      ~~~~~~~^~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1709:98: error: ‘class llvm::PointerType’ has no member named ‘getElementType’; did you mean ‘getArrayElementType’?
+ 1709 |                                                         LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
+      |                                                                                                  ^~~~~~~~~~~~~~
+      |                                                                                                  getArrayElementType
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1734:68: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+ 1734 |                                                         if (argNum > (numArgs + 1)) {
+      |                                                             ~~~~~~~^~~~~~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:1746:98: error: ‘class llvm::PointerType’ has no member named ‘getElementType’; did you mean ‘getArrayElementType’?
+ 1746 |                                                         LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
+      |                                                                                                  ^~~~~~~~~~~~~~
+      |                                                                                                  getArrayElementType
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘bool dataflowProtection::cloneInsns()’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:2122:37: warning: unused variable ‘beforeBlock’ [-Wunused-variable]
+ 2122 |                         BasicBlock* beforeBlock = invInst->getParent();
+      |                                     ^~~~~~~~~~~
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp: In member function ‘void dataflowProtection::cloneMetadata(llvm::Module&, llvm::Function*)’:
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:2644:17: error: ‘DITypeRef’ was not declared in this scope; did you mean ‘typedef’?
+ 2644 |                 DITypeRef t = dtypeArray[i];
+      |                 ^~~~~~~~~
+      |                 typedef
+/home/th3g3ntl3man/Documents/work/UA/COAST/projects/dataflowProtection/cloning.cpp:2645:27: error: ‘t’ was not declared in this scope; did you mean ‘tm’?
+ 2645 |                 auto tr = t.resolve();
+      |                           ^
+      |                           tm
+gmake[2]: *** [dataflowProtection/CMakeFiles/DataflowProtection.dir/build.make:132: dataflowProtection/CMakeFiles/DataflowProtection.dir/verification.cpp.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[2]: *** [dataflowProtection/CMakeFiles/DataflowProtection.dir/build.make:104: dataflowProtection/CMakeFiles/DataflowProtection.dir/synchronization.cpp.o] Error 1
+gmake[2]: *** [dataflowProtection/CMakeFiles/DataflowProtection.dir/build.make:90: dataflowProtection/CMakeFiles/DataflowProtection.dir/cloning.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:228: dataflowProtection/CMakeFiles/DataflowProtection.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2

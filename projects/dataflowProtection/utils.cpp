@@ -411,8 +411,8 @@ void dataflowProtection::moveClonesToEndIfSegmented(Module & M) {
 //						errs() << "    Move point at CI " << I << "\n";
 						movePoints.push(&I);
 					}
-				} else if (TerminatorInst* TI = dyn_cast<TerminatorInst>(&I)) {
-					if (isSyncPoint(TI)) {
+                } else if (I.isTerminator()) {
+                    if (isSyncPoint(&I)) {
 //						errs() << "    Move point at TI sync " << *startOfSyncLogic[&I] << "\n";
 						movePoints.push(startOfSyncLogic[&I]);
 					} else {
@@ -571,10 +571,10 @@ GlobalVariable* dataflowProtection::createGlobalVariable(Module& M,
 	newGV = cast<GlobalVariable>(newConstGV);
 
 	// Set the properties
-	newGV->setConstant(false);
-	newGV->setInitializer(ConstantInt::getNullValue(newGVtype));
-	newGV->setUnnamedAddr(GlobalValue::UnnamedAddr());
-	newGV->setAlignment(byteSz);
+    newGV->setConstant(false);
+    newGV->setInitializer(ConstantInt::getNullValue(newGVtype));
+    newGV->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
+    newGV->setAlignment(Align(byteSz));
 
 	return newGV;
 }
@@ -590,8 +590,8 @@ int dataflowProtection::getArrayTypeSize(Module & M, ArrayType * arrayType) {
 	if (ArrayType * containedArrayType = dyn_cast<ArrayType>(containedType)) {
 		return arrayType->getNumElements() * getArrayTypeSize(M, containedArrayType);
 	} else {
-		DataLayout dataLayout(&M);
-		return arrayType->getNumElements() * dataLayout.getTypeAllocSize(containedType);
+    const DataLayout &dataLayout = M.getDataLayout();
+    return arrayType->getNumElements() * (int)dataLayout.getTypeAllocSize(containedType);
 	}
 
 }
@@ -603,8 +603,8 @@ int dataflowProtection::getArrayTypeElementBitWidth(Module & M, ArrayType * arra
 	if (ArrayType * containedArrayType = dyn_cast<ArrayType>(containedType)) {
 		return getArrayTypeElementBitWidth(M, containedArrayType);
 	} else {
-		DataLayout dataLayout(&M);
-		return dataLayout.getTypeAllocSizeInBits(containedType);
+    const DataLayout &dataLayout = M.getDataLayout();
+    return (int)dataLayout.getTypeAllocSizeInBits(containedType);
 	}
 
 }
@@ -653,7 +653,7 @@ void dataflowProtection::walkInstructionUses(Instruction* I, bool xMR) {
 			} else if (CI) {
 				// skip all call instructions for now
 				;
-			} else if (TerminatorInst* TI = dyn_cast<TerminatorInst>(instUse)) {
+                } else if (instUse->isTerminator()) {
 				// this should become a syncpoint
 				//  really? needs more testing
 //				if (xMR) syncPoints.push_back(instUse);
@@ -730,7 +730,8 @@ void dataflowProtection::updateFnWrappers(Module& M) {
 
 			// find the matching function name
 			StringRef normalFnName = fnName.substr(0, fnName.size() - wrapperFnEnding.size());
-			Constant* fnC = M.getOrInsertFunction(normalFnName, fn.getFunctionType());
+            auto callee = M.getOrInsertFunction(normalFnName, fn.getFunctionType());
+            Constant* fnC = dyn_cast<Constant>(callee.getCallee());
 			if (!fnC) {
 				errs() << "Matching function call to '" << normalFnName << "' doesn't exist!\n";
 				exit(-1);
@@ -758,7 +759,8 @@ void dataflowProtection::updateFnWrappers(Module& M) {
 			std::vector<int> argNums = splitOnDelim(argNumStr, '_');
 			tempCloneAfterCallArgMap[&fn] = argNums;
 
-			Constant* fnC = M.getOrInsertFunction(normalFnName, fn.getFunctionType());
+            auto callee2 = M.getOrInsertFunction(normalFnName, fn.getFunctionType());
+            Constant* fnC = dyn_cast<Constant>(callee2.getCallee());
 			if (!fnC) {
 				errs() << "Matching function call to '" << normalFnName << "' doesn't exist!\n";
 				exit(-1);
@@ -783,7 +785,7 @@ void dataflowProtection::updateFnWrappers(Module& M) {
 					auto op0 = ci->getOperand(0);
 					Function* calledF;
 
-					Value* v = ci->getCalledValue();
+                    Value* v = ci->getCalledOperand();
 					calledF = dyn_cast<Function>(v->stripPointerCasts());
 					auto found = wrapperMap.find(calledF);
 

@@ -106,8 +106,8 @@ void dataflowProtection::populateValuesToClone(Module& M) {
 						continue;
 					}
 
-					// Clone constants in the function call
-					for (unsigned int i = 0; i < ci->getNumArgOperands(); i++) {
+                    // Clone constants in the function call
+                    for (unsigned int i = 0; i < ci->getNumOperands(); i++) {
 						Value * arg = ci->getArgOperand(i);
 						if (ConstantExpr * e = dyn_cast<ConstantExpr>(arg)) {
 							constantExprToClone.insert(e);
@@ -163,14 +163,14 @@ void dataflowProtection::populateValuesToClone(Module& M) {
 
 						// skip replicating debug function calls, the debugger only knows about the
 						//  original variable names anyway.
-						if (cF->getName().startswith_lower("llvm.dbg.") ||
-								cF->getName().startswith_lower("llvm.lifetime.")) {
+                        if (cF->getName().startswith("llvm.dbg.") ||
+                                cF->getName().startswith("llvm.lifetime.")) {
 							continue;
 						}
 
 					} else {	// it is an indirect function call
 
-						Value* calledValue = ci->getCalledValue();
+                        Value* calledValue = ci->getCalledOperand();
 
 						if (auto* cexpr = dyn_cast<ConstantExpr>(calledValue)) {
 
@@ -297,7 +297,7 @@ void dataflowProtection::populateFnWorklist(Module& M) {
 	std::set<Function*> fnList;
 	for (auto & fn_it : M) {
 		// check for unsupported functions
-		if (unsupportedFunctions.find(fn_it.getName()) != unsupportedFunctions.end()) {
+        if (unsupportedFunctions.find(fn_it.getName().str()) != unsupportedFunctions.end()) {
 			errs() << err_string << "\n    " << fn_it.getName() << ": function is not supported!\n\n\n";
 			// don't quit, because application writer may have way of dealing with it
 		}
@@ -622,7 +622,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				 */
 
 				// clone the operands
-				for (unsigned int i = 0; i < invInst->getNumArgOperands(); i++) {
+                for (unsigned int i = 0; i < invInst->getNumOperands(); i++) {
 					if (willBeCloned(invInst->getArgOperand(i))) {
 						cloneArg[i] = true;
 					}
@@ -673,7 +673,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				continue;
 			}
 
-			for (unsigned int i = 0; i < callInst->getNumArgOperands(); i++) {
+            for (unsigned int i = 0; i < callInst->getNumOperands(); i++) {
 				if (willBeCloned(callInst->getArgOperand(i))) {
 					cloneArg[i] = true;
 				}
@@ -729,8 +729,8 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 			Fname= F->getName().str() + "_DWC";
 		else
 			Fname= F->getName().str() + "_TMR";
-		Constant * c = M.getOrInsertFunction(Fname, Ftype);
-		Function * Fnew = dyn_cast<Function>(c);
+        FunctionCallee c = M.getOrInsertFunction(Fname, Ftype);
+        Function * Fnew = dyn_cast<Function>(c.getCallee());
 		assert(Fnew && "New function is non-void");
 
 		unsigned int i = 0;
@@ -773,8 +773,8 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 //		errs() << "\n";
 
 
-		SmallVector<ReturnInst*, 8> returns;
-		CloneFunctionInto(Fnew, F, paramMap, true, returns);
+        SmallVector<ReturnInst*, 8> returns;
+        CloneFunctionInto(Fnew, F, paramMap, CloneFunctionChangeType::GlobalChanges, returns);
 		origFunctions.push_back(F);
 		fnsToClone.insert(Fnew);
 		fnsToClone.erase(F);
@@ -914,7 +914,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				 * Special check for calls to variadic functions.
 				 * Make sure to add the extra arguments to the new function call.
 				 */
-				if (F->isVarArg() && (callInst->getNumArgOperands() > numArgs)) {
+                if (F->isVarArg() && (callInst->getNumOperands() > numArgs)) {
 					#ifdef DBG_CLN_FN_ARGS
 					if (debugFlag) {
 						errs() << " - orig call has " << callInst->getNumArgOperands() << " arguments\n";
@@ -922,7 +922,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 					}
 					#endif
 					// add the rest
-					for (unsigned int i = numArgs; i < callInst->getNumArgOperands(); i++) {
+                    for (unsigned int i = numArgs; i < callInst->getNumOperands(); i++) {
 						Value* extraArg = callInst->getArgOperand(i);
 						args.push_back(extraArg);
 					}
@@ -937,11 +937,10 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				if ( (Fnew->getReturnType() == Type::getVoidTy(M.getContext())) ||
 					 (!callInst->hasName()) )
 				{
-					newCallInst = CallInst::Create((Value*) Fnew, *callArgs);
+                    newCallInst = CallInst::Create(Fnew, *callArgs);
 					newCallInst->insertBefore(callInst);
 				} else {
-					// The casting here is to stop Eclipse from complaining that the Create call doesn't have the right types
-					newCallInst = CallInst::Create((Value*) Fnew, *callArgs,
+                    newCallInst = CallInst::Create(Fnew, *callArgs,
 							Twine(callInst->getName()), (Instruction*) callInst);
 				}
 
@@ -1004,7 +1003,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				callArgs = new ArrayRef<Value*>(args);
 
 				// The casting here is to stop Eclipse from complaining that the Create call doesn't have the right types
-				InvokeInst* newInvInst = InvokeInst::Create((Value*) Fnew, invInst->getNormalDest(),
+                InvokeInst* newInvInst = InvokeInst::Create(Fnew, invInst->getNormalDest(),
 						invInst->getUnwindDest(), *callArgs, Twine(invInst->getName()), (Instruction*) invInst);
 
 				// Deal with function calls inside function args when casted - not recognized as callInsts
@@ -1159,16 +1158,11 @@ void dataflowProtection::cloneFunctionReturnVals(Module& M) {
 			newParams.push_back(newRetType);
 
 		// new function type, same arguments
-		FunctionType* newFuncType = fType->get(retType,     	   	/* return type */
-											   newParams,   		/* arguments */
-											   fType->isVarArg());	/* variadic */
+		FunctionType* newFuncType = FunctionType::get(retType, newParams, fType->isVarArg());
 
 		// create a new function
-		Function* newFunc = F->Create(newFuncType,					/* function type */
-									  F->getLinkage(),				/* linkage */
-							  		  F->getName() + ".RR",			/* name */
-									  &M);
-
+		Function* newFunc = Function::Create(newFuncType, F->getLinkage(), F->getName() + ".RR", &M);
+		
 		// set up stuff for copying
 		ValueToValueMapTy paramMap;
 		SmallVector<ReturnInst*, 8> returns;
@@ -1208,7 +1202,7 @@ void dataflowProtection::cloneFunctionReturnVals(Module& M) {
 		}
 
 		// copy the body of the function
-		CloneFunctionInto(newFunc, F, paramMap, true, returns);
+        CloneFunctionInto(newFunc, F, paramMap, CloneFunctionChangeType::GlobalChanges, returns);
 
 		// find the last alloca in the entry block
 		BasicBlock& entryBB = newFunc->getEntryBlock();
@@ -1265,12 +1259,12 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 		Constant* one = ConstantInt::get(
 			IntegerType::getInt32Ty(M.getContext()), 1, false);
 		unsigned int addrSpace = M.getDataLayout().getAllocaAddrSpace();
-		unsigned int alignNum = M.getDataLayout().getPrefTypeAlignment(newRetType);
+        unsigned int alignNum = M.getDataLayout().getPrefTypeAlign(newRetType).value();
 		alloc1 = new AllocaInst(
 			newRetType,		/* Type */
 			addrSpace,		/* AddrSpace */
 			one,			/* Value* ArraySize */
-			alignNum,		/* Align */
+			Align(alignNum),		/* Align */
 			Twine((argIt)->getName() + ".addr")
 		);
 		alloc1->insertBefore(&*entryBB.getFirstInsertionPt());
@@ -1280,7 +1274,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 				newRetType,		/* Type */
 				addrSpace,		/* AddrSpace */
 				one,			/* Value* ArraySize */
-				alignNum,		/* Align */
+				Align(alignNum),		/* Align */
 				Twine((argIt+1)->getName() + ".addr")
 			);
 			alloc2->insertAfter(alloc1);
@@ -1292,11 +1286,11 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 		StoreInst* storeRetAddr1, * storeRetAddr2;
 		storeRetAddr1 = new StoreInst(&*argIt, alloc1);
 		storeRetAddr1->insertAfter(alloc1);
-		storeRetAddr1->setAlignment(alignNum);
+        storeRetAddr1->setAlignment(Align(alignNum));
 		if (TMR) {
 			storeRetAddr2 = new StoreInst(&*(argIt+1), alloc2);
 			storeRetAddr2->insertAfter(alloc2);
-			storeRetAddr2->setAlignment(alignNum);
+            storeRetAddr2->setAlignment(Align(alignNum));
 		}
 
         ///////////////////// change return points /////////////////////
@@ -1306,7 +1300,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 			ValuePair retClones = getClone(retVal);
 
 			// load the argument
-			LoadInst* loadRet = new LoadInst(alloc1, "loadRet", ret);
+			LoadInst* loadRet = new LoadInst(alloc1->getAllocatedType(), alloc1, "loadRet", false, Align(alignNum), ret);
 			// PRINT_VALUE(loadRet);
 			// store the copy
 			StoreInst* storeRet = new StoreInst(
@@ -1316,7 +1310,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 			);
 			StoreInst* storeRet2;
 			if (TMR) {
-				LoadInst* loadRet2 = new LoadInst(alloc2, "loadRet2", ret);
+				LoadInst* loadRet2 = new LoadInst(alloc2->getAllocatedType(), alloc2, "loadRet2", false, Align(alignNum), ret);
 				storeRet2 = new StoreInst(
 					retClones.second,	/* value to store */
 					loadRet2,			/* pointer where to store */
@@ -1396,7 +1390,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 					normalRetType,	/* Type */
 					addrSpace,		/* AddrSpace */
 					one,			/* Value* ArraySize */
-					alignNum,		/* Align */
+					Align(alignNum),		/* Align */
 					Twine(callName + ".DWC.addr")
 				);
 				callAlloca1->insertBefore(&*(*callEntryBB).getFirstInsertionPt());
@@ -1405,7 +1399,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 						normalRetType,	/* Type */
 						addrSpace,		/* AddrSpace */
 						one,			/* Value* ArraySize */
-						alignNum,		/* Align */
+						Align(alignNum),		/* Align */
 						Twine(callName + ".TMR.addr")
 					);
 					callAlloca2->insertAfter(callAlloca1);
@@ -1418,8 +1412,8 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 				if (callInst) {
 					// create call arg list
 					std::vector<Value*> args;
-					// add existing arguments
-					for (unsigned i = 0; i < callInst->getNumArgOperands(); i++) {
+                    // add existing arguments
+                    for (unsigned i = 0; i < callInst->arg_size(); i++) {
 						args.push_back(callInst->getArgOperand(i));
 					}
 					// finish arg list
@@ -1455,7 +1449,7 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 					// create call arg list
 					std::vector<Value*> args;
 					// add existing arguments
-					for (unsigned i = 0; i < invInst->getNumArgOperands(); i++) {
+                    for (unsigned i = 0; i < invInst->arg_size(); i++) {
 						args.push_back(invInst->getArgOperand(i));
 					}
 					// finish arg list
@@ -1487,13 +1481,15 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 
                 ////////////// load return clones //////////////
 
-				LoadInst* loadRet1 = new LoadInst(
-						callAlloca1, newInst->getName() + ".DWC");
+                auto *pt1 = cast<PointerType>(callAlloca1->getType());
+                LoadInst* loadRet1 = new LoadInst(
+                        pt1->getElementType(), callAlloca1, newInst->getName() + ".DWC", false, Align(1));
 				loadRet1->insertAfter(newInst);
 				LoadInst* loadRet2;
 				if (TMR) {
-					loadRet2 = new LoadInst(
-							callAlloca2, newInst->getName() + ".TMR");
+                    auto *pt2 = cast<PointerType>(callAlloca2->getType());
+                    loadRet2 = new LoadInst(
+                            pt2->getElementType(), callAlloca2, newInst->getName() + ".TMR", false, Align(1));
 					loadRet2->insertAfter(loadRet1);
 				}
 				// register them as clones
@@ -1684,7 +1680,7 @@ void dataflowProtection::updateCallInsns(Module & M) {
 	bool debugFlag = 0;
 #endif
 
-	for (auto &F : M) {
+    for (auto &F : M) {
 		// If we are skipping the function, don't update the call instructions
 		if (fnsToCloneAndSkip.find(&F) != fnsToCloneAndSkip.end()) {
 			if (fnsToClone.find(&F) == fnsToClone.end()) {
@@ -1700,7 +1696,7 @@ void dataflowProtection::updateCallInsns(Module & M) {
 					if (cloneAfterFnCall.find(Fcalled) != cloneAfterFnCall.end()) {
 						// This handles cases where all of the arguments are
 						//  going to be cloned.
-						unsigned int numArgs = CI->getNumArgOperands();
+                        unsigned int numArgs = CI->arg_size();
 						for (int argNum = 0; argNum < numArgs; ++argNum) {
 							// get the clones
 							Value* op = CI->getArgOperand(argNum);
@@ -1709,22 +1705,19 @@ void dataflowProtection::updateCallInsns(Module & M) {
 							assert(clone1 && "value is cloned!");
 
 							// load the original
-							LoadInst* loadOrig = new LoadInst(op, "loadOrig");
+							auto *ptrTy = cast<PointerType>(op->getType());
+							LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
 							loadOrig->insertAfter(CI);
 
 							// store to the copy
-							StoreInst* storeCopy = new StoreInst(
-								loadOrig,			/* value to store */
-								clone1				/* pointer where to store */
-							);
+							StoreInst* storeCopy = new StoreInst(loadOrig, clone1, false, Align(1));
 							storeCopy->insertAfter(loadOrig);
 
 							if (TMR) {
 								// one more store instruction for TMR copy
 								Value* clone2 = clonePair.second;
 								assert(clone2 && "valid 2nd clone with TMR");
-								StoreInst* storeCopy2 = new StoreInst(
-										loadOrig, clone2);
+								StoreInst* storeCopy2 = new StoreInst(loadOrig, clone2, false, Align(1));
 								storeCopy2->insertAfter(storeCopy);
 							}
 						}
@@ -1734,7 +1727,7 @@ void dataflowProtection::updateCallInsns(Module & M) {
 					else if (cloneAfterCallArgMap.find(CI) != cloneAfterCallArgMap.end()) {
 						// This handles cases where the application writer specifies
 						//  certain arguments to clone-after-call.
-						unsigned int numArgs = CI->getNumArgOperands();
+                        unsigned int numArgs = CI->arg_size();
 						// iterate through the ones specified
 						for (auto argNum : cloneAfterCallArgMap[CI]) {
 							// check bounds
@@ -1749,19 +1742,19 @@ void dataflowProtection::updateCallInsns(Module & M) {
 							assert(clone1 && "value is cloned!");
 
 							// load original
-							LoadInst* loadOrig = new LoadInst(op, "loadOrig");
+							auto *ptrTy = cast<PointerType>(op->getType());
+							LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
 							loadOrig->insertAfter(CI);
 
 							// store to copy
-							StoreInst* storeCopy = new StoreInst(loadOrig, clone1);
+							StoreInst* storeCopy = new StoreInst(loadOrig, clone1, false, Align(1));
 							storeCopy->insertAfter(loadOrig);
 
 							if (TMR) {
 								// once more for TMR copy
 								Value* clone2 = clonePair.second;
 								assert(clone2 && "valid 2nd clone with TMR");
-								StoreInst* storeCopy2 = new StoreInst(
-										loadOrig, clone2);
+								StoreInst* storeCopy2 = new StoreInst(loadOrig, clone2, false, Align(1));
 								storeCopy2->insertAfter(storeCopy);
 							}
 						}
@@ -1865,11 +1858,11 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 	 */
 
 	// Don't mess with loads with inline GEPs
-	if (noMemReplicationFlag) {
-		if (ce->isGEPWithNoNotionalOverIndexing()) {
-			return;
-		}
-	}
+    if (noMemReplicationFlag) {
+        if (ce->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(ce)->hasIndices()) {
+            return;
+        }
+    }
 
 	/*
 	 * check if it's an inline bitcast
@@ -1908,7 +1901,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 			assert(_op1 && "valid clone");
 //						errs() << *_op1 << "\n";
 			Constant* _nop1 = dyn_cast<Constant>(_op1);
-			Constant* nce1 = ce1->getWithOperandReplaced(0, _nop1);
+            Constant* nce1 = ce1->getWithOperands({ _nop1, ce1->getOperand(1) });
 //						errs() << *nce1 << "\n";
 			clone.first->setOperand(i, nce1);
 			if (TMR) {
@@ -1916,7 +1909,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 				Value* _op2 = cloneMap[_op].second;
 				assert(_op2 && "valid second clone");
 				Constant* _nop2 = dyn_cast<Constant>(_op2);
-				Constant* nce2 = ce2->getWithOperandReplaced(0, _nop2);
+                Constant* nce2 = ce2->getWithOperands({ _nop2, ce2->getOperand(1) });
 				clone.second->setOperand(i, nce2);
 			}
 			return;
@@ -1924,7 +1917,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 		// could be something ugly like:
 		//%2 = load <4 x i32>, <4 x i32>* bitcast (i32* getelementptr inbounds ([2 x [8 x i32]], [2 x [8 x i32]]* @matrix, i64 0, i64 0, i64 4) to <4 x i32>*), align 16, !tbaa !2
 		ConstantExpr* innerGEPclone1 = dyn_cast<ConstantExpr>(_op);
-		if (innerGEPclone1 && innerGEPclone1->isGEPWithNoNotionalOverIndexing()) {
+        if (innerGEPclone1 && innerGEPclone1->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(innerGEPclone1)->hasIndices()) {
 
 			// get the place to update
 			ConstantExpr* innerGEPclone1 = dyn_cast<ConstantExpr>(ce->getOperand(0));
@@ -1940,8 +1933,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 				assert(GEPvalClone1 && "valid clone");
 
 				// replace uses
-				Constant* newGEPclone1 = innerGEPclone1->getWithOperandReplaced(
-						0, dyn_cast<Constant>(GEPvalClone1));
+                Constant* newGEPclone1 = innerGEPclone1->getWithOperands({ dyn_cast<Constant>(GEPvalClone1), innerGEPclone1->getOperand(1) });
 				Constant* newCE = ConstantExpr::getCast(
 						ce->getOpcode(), newGEPclone1, ce->getType());
 				clone.first->setOperand(i, newCE);
@@ -1953,8 +1945,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 					ConstantExpr* innerGEPclone2 = dyn_cast<ConstantExpr>(ce2->getOperand(0));
 					Value* GEPvalClone2 = cloneMap[GEPvalOrig].second;
 					assert(GEPvalClone2 && "valid second clone");
-					Constant* newGEPclone2 = innerGEPclone2->getWithOperandReplaced(
-							0, dyn_cast<Constant>(GEPvalClone2));
+                    Constant* newGEPclone2 = innerGEPclone2->getWithOperands({ dyn_cast<Constant>(GEPvalClone2), innerGEPclone2->getOperand(1) });
 					Constant* newCE2 = ConstantExpr::getCast(
 							ce2->getOpcode(), newGEPclone2, ce2->getType());
 					clone.second->setOperand(i, newCE2);
@@ -1991,7 +1982,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 
 	Constant* newOp1 = dyn_cast<Constant>(v_temp);
 	assert(newOp1 && "Null Constant newOp1");
-	Constant* c1 = ce->getWithOperandReplaced(0, newOp1);
+    Constant* c1 = ce->getWithOperands({ newOp1, ce->getOperand(1) });
 	ConstantExpr* eNew1 = dyn_cast<ConstantExpr>(c1);
 	assert(eNew1 && "Null ConstantExpr eNew1");
 	clone.first->setOperand(i, eNew1);
@@ -1999,7 +1990,7 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 	if (TMR) {
 		Constant* newOp2 = dyn_cast<Constant>(cloneMap[ce->getOperand(0)].second);
 		assert(newOp2 && "Null Constant newOp2");
-		Constant* c2 = ce->getWithOperandReplaced(0, newOp2);
+        Constant* c2 = ce->getWithOperands({ newOp2, ce->getOperand(1) });
 		ConstantExpr* eNew2 = dyn_cast<ConstantExpr>(c2);
 		assert(eNew2 && "Null ConstantExpr eNew2");
 		clone.second->setOperand(i, eNew2);
@@ -2022,8 +2013,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 void dataflowProtection::cloneConstantVectorOperands(ConstantVector* constVec, InstructionPair clone, unsigned i) {
 
 	// how many elements in the vector
-	VectorType* vType = dyn_cast<VectorType>(constVec->getType());
-	unsigned elemCount = vType->getVectorNumElements();
+        auto *vType = dyn_cast<VectorType>(constVec->getType());
+        unsigned elemCount = 0;
+        if (auto *FVT = dyn_cast<FixedVectorType>(vType)) {
+            elemCount = FVT->getNumElements();
+        } else {
+            // Scalable vectors not expected here; default to 0 to avoid UB
+            elemCount = 0;
+        }
 //	errs() << " * " << *constVec << "\n";
 //	errs() << "constant vector type with " << elemCount << " elements:\n";
 
@@ -2035,8 +2032,8 @@ void dataflowProtection::cloneConstantVectorOperands(ConstantVector* constVec, I
 	for (unsigned int k = 0; k < elemCount; k++) {
 		Constant* vc = constVec->getAggregateElement(k);
 
-		if (auto vc_const = dyn_cast<ConstantExpr>(vc)) {
-			if (vc_const->isGEPWithNoNotionalOverIndexing()) {
+        if (auto vc_const = dyn_cast<ConstantExpr>(vc)) {
+            if (vc_const->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(vc_const)->hasIndices()) {
 				Value* _op = vc_const->getOperand(0);
 
 				if (isCloned(_op)) {
@@ -2054,7 +2051,7 @@ void dataflowProtection::cloneConstantVectorOperands(ConstantVector* constVec, I
 					ConstantExpr* vc_clone_expr = dyn_cast<ConstantExpr>(vc_clone);
 
 					// get a new constant with the operand replaced with correct cloned value
-					Constant* vc_clone_new = vc_clone_expr->getWithOperandReplaced(0, _nop1);
+                Constant* vc_clone_new = vc_clone_expr->getWithOperands({ _nop1, vc_clone_expr->getOperand(1) });
 //					errs() << *vc_clone_new << "\n";
 
 					// here's our new constant GEP that goes inside a vector
@@ -2069,7 +2066,7 @@ void dataflowProtection::cloneConstantVectorOperands(ConstantVector* constVec, I
 						ConstantVector* constVec_clone2 = dyn_cast<ConstantVector>(clone.second->getOperand(i));
 						ConstantExpr* vc_clone_expr2 = dyn_cast<ConstantExpr>(constVec_clone2->getAggregateElement(k));
 
-						Constant* vc_clone_new2 = vc_clone_expr2->getWithOperandReplaced(0, _nop2);
+                        Constant* vc_clone_new2 = vc_clone_expr2->getWithOperands({ _nop2, vc_clone_expr2->getOperand(1) });
 						newVecArray_TMR[k] = vc_clone_new2;
 					}
 				}
@@ -2380,15 +2377,15 @@ void dataflowProtection::verifyCloningSuccess() {
 // Cloning of constants
 //----------------------------------------------------------------------------//
 void dataflowProtection::cloneConstantExpr() {
-	for (auto e : constantExprToClone) {
-		if (e->isGEPWithNoNotionalOverIndexing() || e->isCast()) {
+    for (auto e : constantExprToClone) {
+        if ((e->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(e)->hasIndices()) || e->isCast()) {
 			Value* oldOp = e->getOperand(0);
 			assert(isa<Constant>(oldOp));
 			ValuePair clones = getClone(oldOp);
 
 			Constant* constantOp1 = dyn_cast<Constant>(clones.first);
 			assert(constantOp1);
-			Constant* c1 = e->getWithOperandReplaced(0, constantOp1);
+            Constant* c1 = e->getWithOperands({constantOp1, e->getOperand(1)});
 			ConstantExpr* e1 = dyn_cast<ConstantExpr>(c1);
 			assert(e1);
 
@@ -2396,7 +2393,7 @@ void dataflowProtection::cloneConstantExpr() {
 			if (TMR) {
 				Constant* constantOp2 = dyn_cast<Constant>(clones.second);
 				assert(constantOp2);
-				Constant* c2 = e->getWithOperandReplaced(0, constantOp2);
+                Constant* c2 = e->getWithOperands({constantOp2, e->getOperand(1)});
 				e2 = dyn_cast<ConstantExpr>(c2);
 				assert(e2);
 			}

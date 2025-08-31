@@ -119,7 +119,8 @@ bool ExitMarker::runOnModule(Module &M) {
 	FunctionType* markerTy = FunctionType::get(mainFn->getReturnType(),args,false);
 
 	//Create a function called EDDI_EXIT
-	Constant* c = M.getOrInsertFunction("EXIT_MARKER", markerTy);
+    auto callee = M.getOrInsertFunction("EXIT_MARKER", markerTy);
+    Constant* c = dyn_cast<Constant>(callee.getCallee());
 	Function* exitMarkerFn = dyn_cast<Function>(c);
 	assert(exitMarkerFn && "Exit marker function is non-void");
 

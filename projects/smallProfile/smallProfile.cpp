@@ -90,7 +90,8 @@ Function* SmallProfile::getPrintFunction(Module &M) {
 	}
 
 	// make the function
-	Constant* printfc = M.getOrInsertFunction(printFnName, printfTy);
+    auto printfcCallee = M.getOrInsertFunction(printFnName, printfTy);
+    Constant* printfc = dyn_cast<Constant>(printfcCallee.getCallee());
 	Function* print = dyn_cast<Function>(printfc);
 	assert(print && "Print function not defined");
 
@@ -258,7 +259,8 @@ void SmallProfile::insertProfilePrintFunction(Module &M) {
 Function* SmallProfile::createProfilePrintFunction(Module &M) {
 
 	FunctionType* statsCallType = FunctionType::get(Type::getVoidTy(M.getContext()), false);
-	Constant* c = M.getOrInsertFunction("PRINT_PROFILE_STATS", statsCallType);
+    auto cCallee = M.getOrInsertFunction("PRINT_PROFILE_STATS", statsCallType);
+    Constant* c = dyn_cast<Constant>(cCallee.getCallee());
 	Function* printStatsFn = dyn_cast<Function>(c);
 	assert(printStatsFn && "Profiling function is non-void");
 
@@ -291,8 +293,8 @@ GlobalVariable* SmallProfile::createGlobalCounter(Module &M, Function* fn) {
 		// set the correct attributes, making it local instead of extern
 		nextCnt->setConstant(false);
 		nextCnt->setInitializer(ConstantInt::getNullValue(type_i32));
-		nextCnt->setUnnamedAddr( GlobalValue::UnnamedAddr() );
-		nextCnt->setAlignment(4);
+    nextCnt->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
+    nextCnt->setAlignment(Align(4));
 
 		// add to list for later
 		std::pair<Function*, GlobalVariable*> tmpPair = std::make_pair(fn, nextCnt);
@@ -345,8 +347,8 @@ GetElementPtrInst* SmallProfile::getGEPforPrint(Module &M, StringRef* varName, B
 	globalVal->setConstant(true);
 	globalVal->setInitializer(dataInit);
 	globalVal->setLinkage(GlobalVariable::PrivateLinkage);
-	globalVal->setUnnamedAddr( GlobalValue::UnnamedAddr() );
-	globalVal->setAlignment(1);
+    globalVal->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
+    globalVal->setAlignment(Align(1));
 
 
 	//Create constants for GEP arguments

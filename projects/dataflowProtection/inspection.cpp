@@ -11,6 +11,8 @@
 #include <string>
 #include <list>
 
+#include "llvm/Support/CommandLine.h"
+
 
 using namespace llvm;
 
@@ -101,7 +103,7 @@ bool dataflowProtection::isCoarseGrainedFunction(StringRef fnName) {
 // Synchronization utilities
 //----------------------------------------------------------------------------//
 bool dataflowProtection::isSyncPoint(Instruction* I) {
-	if (isa<StoreInst>(I) || isa<CallInst>(I) || isa<TerminatorInst>(I) || isa<GetElementPtrInst>(I))
+    if (isa<StoreInst>(I) || isa<CallInst>(I) || I->isTerminator() || isa<GetElementPtrInst>(I))
 		return std::find(syncPoints.begin(), syncPoints.end(), I) != syncPoints.end();
 	else
 		return false;

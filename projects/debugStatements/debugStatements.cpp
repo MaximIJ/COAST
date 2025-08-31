@@ -48,7 +48,8 @@ bool DebugStatements::runOnModule(Module &M) {
 			get(M.getContext(), 8), 0);
 	Type* type_i32 = Type::getInt32Ty(M.getContext());
 	FunctionType *printfTy = FunctionType::get(type_i32, std::vector<Type*> (1, charPointerType), true);
-	Constant* c = M.getOrInsertFunction("printf",printfTy);
+    auto callee = M.getOrInsertFunction("printf", printfTy);
+    Constant* c = dyn_cast<Constant>(callee.getCallee());
 	Function* print = dyn_cast<Function>(c);
 	assert(print && "Print function not defined");
 
@@ -143,8 +144,8 @@ GetElementPtrInst* DebugStatements::getGEPforPrint(StringRef* varName, BasicBloc
 	globalVal->setConstant(true);
 	globalVal->setInitializer(dataInit);
 	globalVal->setLinkage(GlobalVariable::PrivateLinkage);
-	globalVal->setUnnamedAddr( GlobalValue::UnnamedAddr() );
-	globalVal->setAlignment(1);
+    globalVal->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
+    globalVal->setAlignment(Align(1));
 
 
 	//Create constants for GEP arguments
