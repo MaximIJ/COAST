@@ -1,0 +1,97 @@
+# COAST Compiler - LLVM 16 Migration Project
+
+## Project Overview
+COAST (Compiler-Assisted Software Fault Tolerance) is a framework for implementing software fault tolerance techniques like TMR (Triple Modular Redundancy) and DWC (Duplication With Comparison) using LLVM passes.
+
+## Current Status: LLVM 16 Migration
+We are migrating COAST from legacy LLVM 7 to modern LLVM 16+ to support RISC-V targets and newer LLVM features.
+
+### What's Been Completed ✅
+1. **New Pass Manager (NPM) Support**
+   - Created `TMRNewPM.cpp` for modern plugin-based TMR pass
+   - Updated CMake configuration to use `add_llvm_pass_plugin`
+   - Added conditional legacy pass building with `COAST_BUILD_LEGACY_PASSES`
+
+2. **Core API Updates in dataflowProtection**
+   - Updated `getOrInsertFunction` to return `FunctionCallee`
+   - Replaced `TerminatorInst*` with `Instruction*` + `isTerminator()` checks
+   - Modernized `LoadInst`/`StoreInst`/`AllocaInst` constructors with `Align` parameters
+   - Updated `VectorType` to `FixedVectorType` APIs
+   - Replaced deprecated `getNumArgOperands()` with `arg_size()`
+   - Updated `getCalledValue()` to `getCalledOperand()`
+   - Fixed `CloneFunctionInto` enum usage
+   - Replaced `ConstantExpr::getWithOperandReplaced` with `getWithOperands`
+   - Updated `GlobalValue::setUnnamedAddr` and `setAlignment` APIs
+   - Fixed `StringRef::startswith_lower` to `startswith`
+
+3. **Build System Updates**
+   - Updated `cmake_minimum_required` to 3.13
+   - Changed LLVM requirement from 7.0 to 16+
+   - Added compatibility shim for `add_llvm_loadable_module`
+   - Made legacy passes conditional
+
+### What's Still Needed 🔄
+1. **Remaining API Fixes**
+   - Fix any remaining `GEPOperator` usage (should use `Operator` or remove)
+   - Update any remaining `Intrinsic::ID::not_intrinsic` references
+   - Check for any remaining `getBasicBlockList()` usage
+   - Verify all `LoadInst`/`StoreInst` constructors are updated
+
+2. **Testing & Validation**
+   - Test TMR pass with RISC-V targets
+   - Verify DWC functionality works correctly
+   - Test with different LLVM versions (16, 17, 18)
+   - Validate fault injection tests still pass
+
+3. **Documentation Updates**
+   - Update README with new LLVM requirements
+   - Document new build process
+   - Update installation instructions
+
+## Development Guidelines
+
+### LLVM API Migration Rules
+- **Always use `Instruction*` instead of `TerminatorInst*`** - check with `isTerminator()`
+- **Load/Store constructors require explicit `Align`** - use `Align(1)` for default
+- **Vector types are now `FixedVectorType`** - not `VectorType`
+- **Function calls use `arg_size()`** - not `getNumArgOperands()`
+- **Module parameter required for intrinsics** - use `getModule()` to get it
+
+### Code Style
+- Use modern C++ features where appropriate
+- Follow LLVM coding standards
+- Add comments for complex LLVM API usage
+- Use `IRBuilder` for complex instruction creation
+
+### Testing Strategy
+- Test with multiple LLVM versions
+- Verify RISC-V target support
+- Run existing test suites
+- Test fault injection scenarios
+
+## Key Files to Focus On
+- `projects/dataflowProtection/` - Core fault tolerance logic
+- `projects/TMR/` - TMR pass implementation
+- `projects/DWC/` - DWC pass implementation
+- `CMakeLists.txt` files - Build configuration
+- `tests/` - Test cases and validation
+
+## Common Issues to Watch For
+- `'TerminatorInst' was not declared` → Use `Instruction*` + `isTerminator()`
+- `no matching function for call to 'LoadInst::LoadInst'` → Add `Type*` and `Align` parameters
+- `'getBasicBlockList' is private` → Use `empty()` or `size()` methods
+- `'GEPOperator' was not declared` → Use `Operator` or remove the check
+
+## Build Commands
+```bash
+mkdir build && cd build
+cmake .. -DLLVM_DIR=/path/to/llvm/lib/cmake/llvm
+make -j$(nproc)
+```
+
+## Next Steps Priority
+1. Fix any remaining compile errors
+2. Test TMR pass with RISC-V
+3. Validate DWC functionality
+4. Update documentation
+5. Add CI/CD for multiple LLVM versions

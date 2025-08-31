@@ -1,0 +1,12 @@
+# Clone and setup
+git clone <your-repo>
+cd COAST
+
+# Check current status
+cat DEVELOPMENT_CONTEXT.md
+cat TODO.md
+
+# Start fixing compile errors
+cd build
+make clean
+make -j$(nproc) 2>&1 | tee build.log
