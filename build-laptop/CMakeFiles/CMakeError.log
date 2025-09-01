@@ -1,81 +1,81 @@
 Performing C SOURCE FILE Test C_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vsY3VL
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-0xfQnO
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c3225/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c3225.dir/build.make CMakeFiles/cmTC_c3225.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vsY3VL'
-Building C object CMakeFiles/cmTC_c3225.dir/src.c.o
-/usr/bin/cc -DC_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW  -fPIC -fno-semantic-interposition -Werror=date-time    -Werror -Werror=unguarded-availability-new -o CMakeFiles/cmTC_c3225.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vsY3VL/src.c
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_039b4/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_039b4.dir/build.make CMakeFiles/cmTC_039b4.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-0xfQnO'
+Building C object CMakeFiles/cmTC_039b4.dir/src.c.o
+/usr/bin/cc -DC_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW  -fPIC -fno-semantic-interposition -Werror=date-time    -Werror -Werror=unguarded-availability-new -o CMakeFiles/cmTC_039b4.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-0xfQnO/src.c
 cc1: error: '-Werror=unguarded-availability-new': no option '-Wunguarded-availability-new'
-gmake[1]: *** [CMakeFiles/cmTC_c3225.dir/build.make:78: CMakeFiles/cmTC_c3225.dir/src.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vsY3VL'
-gmake: *** [Makefile:127: cmTC_c3225/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_039b4.dir/build.make:78: CMakeFiles/cmTC_039b4.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-0xfQnO'
+gmake: *** [Makefile:127: cmTC_039b4/fast] Error 2
 
 
 Source file was:
 int main(void) { return 0; }
 
 Performing C++ SOURCE FILE Test CXX_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTTW8G
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vHS0mT
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d50fa/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d50fa.dir/build.make CMakeFiles/cmTC_d50fa.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTTW8G'
-Building CXX object CMakeFiles/cmTC_d50fa.dir/src.cxx.o
-/usr/bin/c++ -DCXX_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time    -Werror -Werror=unguarded-availability-new -o CMakeFiles/cmTC_d50fa.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTTW8G/src.cxx
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_39e53/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_39e53.dir/build.make CMakeFiles/cmTC_39e53.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vHS0mT'
+Building CXX object CMakeFiles/cmTC_39e53.dir/src.cxx.o
+/usr/bin/c++ -DCXX_SUPPORTS_WERROR_UNGUARDED_AVAILABILITY_NEW  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time    -Werror -Werror=unguarded-availability-new -o CMakeFiles/cmTC_39e53.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vHS0mT/src.cxx
 cc1plus: error: '-Werror=unguarded-availability-new': no option '-Wunguarded-availability-new'
-gmake[1]: *** [CMakeFiles/cmTC_d50fa.dir/build.make:78: CMakeFiles/cmTC_d50fa.dir/src.cxx.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTTW8G'
-gmake: *** [Makefile:127: cmTC_d50fa/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_39e53.dir/build.make:78: CMakeFiles/cmTC_39e53.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-vHS0mT'
+gmake: *** [Makefile:127: cmTC_39e53/fast] Error 2
 
 
 Source file was:
 int main() { return 0; }
 
 Performing C SOURCE FILE Test C_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-p25WCO
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-YmMS52
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b60c2/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b60c2.dir/build.make CMakeFiles/cmTC_b60c2.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-p25WCO'
-Building C object CMakeFiles/cmTC_b60c2.dir/src.c.o
-/usr/bin/cc -DC_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough    -Werror -Wcovered-switch-default -o CMakeFiles/cmTC_b60c2.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-p25WCO/src.c
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_07da8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_07da8.dir/build.make CMakeFiles/cmTC_07da8.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-YmMS52'
+Building C object CMakeFiles/cmTC_07da8.dir/src.c.o
+/usr/bin/cc -DC_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough    -Werror -Wcovered-switch-default -o CMakeFiles/cmTC_07da8.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-YmMS52/src.c
 cc: error: unrecognized command-line option '-Wcovered-switch-default'; did you mean '-Wno-switch-default'?
-gmake[1]: *** [CMakeFiles/cmTC_b60c2.dir/build.make:78: CMakeFiles/cmTC_b60c2.dir/src.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-p25WCO'
-gmake: *** [Makefile:127: cmTC_b60c2/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_07da8.dir/build.make:78: CMakeFiles/cmTC_07da8.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-YmMS52'
+gmake: *** [Makefile:127: cmTC_07da8/fast] Error 2
 
 
 Source file was:
 int main(void) { return 0; }
 
 Performing C++ SOURCE FILE Test CXX_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-Hc9ysL
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-fkGX8E
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_97e76/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_97e76.dir/build.make CMakeFiles/cmTC_97e76.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-Hc9ysL'
-Building CXX object CMakeFiles/cmTC_97e76.dir/src.cxx.o
-/usr/bin/c++ -DCXX_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough    -Werror -Wcovered-switch-default -o CMakeFiles/cmTC_97e76.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-Hc9ysL/src.cxx
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3e9e5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3e9e5.dir/build.make CMakeFiles/cmTC_3e9e5.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-fkGX8E'
+Building CXX object CMakeFiles/cmTC_3e9e5.dir/src.cxx.o
+/usr/bin/c++ -DCXX_SUPPORTS_COVERED_SWITCH_DEFAULT_FLAG  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough    -Werror -Wcovered-switch-default -o CMakeFiles/cmTC_3e9e5.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-fkGX8E/src.cxx
 c++: error: unrecognized command-line option '-Wcovered-switch-default'; did you mean '-Wno-switch-default'?
-gmake[1]: *** [CMakeFiles/cmTC_97e76.dir/build.make:78: CMakeFiles/cmTC_97e76.dir/src.cxx.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-Hc9ysL'
-gmake: *** [Makefile:127: cmTC_97e76/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_3e9e5.dir/build.make:78: CMakeFiles/cmTC_3e9e5.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-fkGX8E'
+gmake: *** [Makefile:127: cmTC_3e9e5/fast] Error 2
 
 
 Source file was:
 int main() { return 0; }
 
 Performing C++ SOURCE FILE Test CXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-rdubJG
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-5YDwhR
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b293f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b293f.dir/build.make CMakeFiles/cmTC_b293f.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-rdubJG'
-Building CXX object CMakeFiles/cmTC_b293f.dir/src.cxx.o
-/usr/bin/c++ -DCXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type  -Werror=non-virtual-dtor -o CMakeFiles/cmTC_b293f.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-rdubJG/src.cxx
-/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-rdubJG/src.cxx:2:36: error: ‘class base’ has virtual functions and accessible non-virtual destructor [-Werror=non-virtual-dtor]
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ae144/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ae144.dir/build.make CMakeFiles/cmTC_ae144.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-5YDwhR'
+Building CXX object CMakeFiles/cmTC_ae144.dir/src.cxx.o
+/usr/bin/c++ -DCXX_WONT_WARN_ON_FINAL_NONVIRTUALDTOR  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type  -Werror=non-virtual-dtor -o CMakeFiles/cmTC_ae144.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-5YDwhR/src.cxx
+/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-5YDwhR/src.cxx:2:36: error: ‘class base’ has virtual functions and accessible non-virtual destructor [-Werror=non-virtual-dtor]
     2 |                              class base {friend f; public: virtual void anchor();protected: ~base();};
       |                                    ^~~~
 cc1plus: some warnings being treated as errors
-gmake[1]: *** [CMakeFiles/cmTC_b293f.dir/build.make:78: CMakeFiles/cmTC_b293f.dir/src.cxx.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-rdubJG'
-gmake: *** [Makefile:127: cmTC_b293f/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_ae144.dir/build.make:78: CMakeFiles/cmTC_ae144.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-5YDwhR'
+gmake: *** [Makefile:127: cmTC_ae144/fast] Error 2
 
 
 Source file was:
@@ -84,19 +84,19 @@ class f {};
                              int main() { return 0; }
 
 Performing C SOURCE FILE Test C_WCOMMENT_ALLOWS_LINE_WRAP failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U5yGxm
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-ozWsIG
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_94d66/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_94d66.dir/build.make CMakeFiles/cmTC_94d66.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U5yGxm'
-Building C object CMakeFiles/cmTC_94d66.dir/src.c.o
-/usr/bin/cc -DC_WCOMMENT_ALLOWS_LINE_WRAP  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough  -Werror -Wcomment -o CMakeFiles/cmTC_94d66.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U5yGxm/src.c
-/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U5yGxm/src.c:1:1: error: multi-line comment [-Werror=comment]
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_19079/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_19079.dir/build.make CMakeFiles/cmTC_19079.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-ozWsIG'
+Building C object CMakeFiles/cmTC_19079.dir/src.c.o
+/usr/bin/cc -DC_WCOMMENT_ALLOWS_LINE_WRAP  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough  -Werror -Wcomment -o CMakeFiles/cmTC_19079.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-ozWsIG/src.c
+/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-ozWsIG/src.c:1:1: error: multi-line comment [-Werror=comment]
     1 | // \
       | ^
 cc1: all warnings being treated as errors
-gmake[1]: *** [CMakeFiles/cmTC_94d66.dir/build.make:78: CMakeFiles/cmTC_94d66.dir/src.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U5yGxm'
-gmake: *** [Makefile:127: cmTC_94d66/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_19079.dir/build.make:78: CMakeFiles/cmTC_19079.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-ozWsIG'
+gmake: *** [Makefile:127: cmTC_19079/fast] Error 2
 
 
 Source file was:
@@ -105,68 +105,68 @@ Source file was:
 int main(void) {return 0;}
 
 Performing C SOURCE FILE Test C_SUPPORTS_STRING_CONVERSION_FLAG failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-9xYwXD
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-AdDz02
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_d1dc7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_d1dc7.dir/build.make CMakeFiles/cmTC_d1dc7.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-9xYwXD'
-Building C object CMakeFiles/cmTC_d1dc7.dir/src.c.o
-/usr/bin/cc -DC_SUPPORTS_STRING_CONVERSION_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment    -Werror -Wstring-conversion -o CMakeFiles/cmTC_d1dc7.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-9xYwXD/src.c
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_a1d37/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a1d37.dir/build.make CMakeFiles/cmTC_a1d37.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-AdDz02'
+Building C object CMakeFiles/cmTC_a1d37.dir/src.c.o
+/usr/bin/cc -DC_SUPPORTS_STRING_CONVERSION_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment    -Werror -Wstring-conversion -o CMakeFiles/cmTC_a1d37.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-AdDz02/src.c
 cc: error: unrecognized command-line option '-Wstring-conversion'; did you mean '-Wsign-conversion'?
-gmake[1]: *** [CMakeFiles/cmTC_d1dc7.dir/build.make:78: CMakeFiles/cmTC_d1dc7.dir/src.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-9xYwXD'
-gmake: *** [Makefile:127: cmTC_d1dc7/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_a1d37.dir/build.make:78: CMakeFiles/cmTC_a1d37.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-AdDz02'
+gmake: *** [Makefile:127: cmTC_a1d37/fast] Error 2
 
 
 Source file was:
 int main(void) { return 0; }
 
 Performing C++ SOURCE FILE Test CXX_SUPPORTS_STRING_CONVERSION_FLAG failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-27IKBL
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-1Pq9y3
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_27d38/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_27d38.dir/build.make CMakeFiles/cmTC_27d38.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-27IKBL'
-Building CXX object CMakeFiles/cmTC_27d38.dir/src.cxx.o
-/usr/bin/c++ -DCXX_SUPPORTS_STRING_CONVERSION_FLAG  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment    -Werror -Wstring-conversion -o CMakeFiles/cmTC_27d38.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-27IKBL/src.cxx
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_250f7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_250f7.dir/build.make CMakeFiles/cmTC_250f7.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-1Pq9y3'
+Building CXX object CMakeFiles/cmTC_250f7.dir/src.cxx.o
+/usr/bin/c++ -DCXX_SUPPORTS_STRING_CONVERSION_FLAG  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment    -Werror -Wstring-conversion -o CMakeFiles/cmTC_250f7.dir/src.cxx.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-1Pq9y3/src.cxx
 c++: error: unrecognized command-line option '-Wstring-conversion'; did you mean '-Wsign-conversion'?
-gmake[1]: *** [CMakeFiles/cmTC_27d38.dir/build.make:78: CMakeFiles/cmTC_27d38.dir/src.cxx.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-27IKBL'
-gmake: *** [Makefile:127: cmTC_27d38/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_250f7.dir/build.make:78: CMakeFiles/cmTC_250f7.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-1Pq9y3'
+gmake: *** [Makefile:127: cmTC_250f7/fast] Error 2
 
 
 Source file was:
 int main() { return 0; }
 
 Performing C SOURCE FILE Test C_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTpWUe
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-uts6co
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_755f2/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_755f2.dir/build.make CMakeFiles/cmTC_755f2.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTpWUe'
-Building C object CMakeFiles/cmTC_755f2.dir/src.c.o
-/usr/bin/cc -DC_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment    -Werror -Wctad-maybe-unsupported -o CMakeFiles/cmTC_755f2.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTpWUe/src.c
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_e344f/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_e344f.dir/build.make CMakeFiles/cmTC_e344f.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-uts6co'
+Building C object CMakeFiles/cmTC_e344f.dir/src.c.o
+/usr/bin/cc -DC_SUPPORTS_CTAD_MAYBE_UNSPPORTED_FLAG  -fPIC -fno-semantic-interposition -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment    -Werror -Wctad-maybe-unsupported -o CMakeFiles/cmTC_e344f.dir/src.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-uts6co/src.c
 cc1: error: command-line option '-Wctad-maybe-unsupported' is valid for C++/ObjC++ but not for C [-Werror]
 cc1: all warnings being treated as errors
-gmake[1]: *** [CMakeFiles/cmTC_755f2.dir/build.make:78: CMakeFiles/cmTC_755f2.dir/src.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-OTpWUe'
-gmake: *** [Makefile:127: cmTC_755f2/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_e344f.dir/build.make:78: CMakeFiles/cmTC_e344f.dir/src.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-uts6co'
+gmake: *** [Makefile:127: cmTC_e344f/fast] Error 2
 
 
 Source file was:
 int main(void) { return 0; }
 
 Determining if the os_signpost_interval_begin exist failed with the following output:
-Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-L0y34r
+Change Dir: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U6bHhy
 
-Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b1557/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b1557.dir/build.make CMakeFiles/cmTC_b1557.dir/build
-gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-L0y34r'
-Building C object CMakeFiles/cmTC_b1557.dir/CheckSymbolExists.c.o
-/usr/bin/cc   -fPIC -fno-semantic-interposition -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment -ffunction-sections -fdata-sections  -o CMakeFiles/cmTC_b1557.dir/CheckSymbolExists.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-L0y34r/CheckSymbolExists.c
-/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-L0y34r/CheckSymbolExists.c:2:10: fatal error: os/signpost.h: No such file or directory
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ced0a/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ced0a.dir/build.make CMakeFiles/cmTC_ced0a.dir/build
+gmake[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U6bHhy'
+Building C object CMakeFiles/cmTC_ced0a.dir/CheckSymbolExists.c.o
+/usr/bin/cc   -fPIC -fno-semantic-interposition -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-comment -ffunction-sections -fdata-sections  -o CMakeFiles/cmTC_ced0a.dir/CheckSymbolExists.c.o -c /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U6bHhy/CheckSymbolExists.c
+/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U6bHhy/CheckSymbolExists.c:2:10: fatal error: os/signpost.h: No such file or directory
     2 | #include <os/signpost.h>
       |          ^~~~~~~~~~~~~~~
 compilation terminated.
-gmake[1]: *** [CMakeFiles/cmTC_b1557.dir/build.make:78: CMakeFiles/cmTC_b1557.dir/CheckSymbolExists.c.o] Error 1
-gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-L0y34r'
-gmake: *** [Makefile:127: cmTC_b1557/fast] Error 2
+gmake[1]: *** [CMakeFiles/cmTC_ced0a.dir/build.make:78: CMakeFiles/cmTC_ced0a.dir/CheckSymbolExists.c.o] Error 1
+gmake[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles/CMakeScratch/TryCompile-U6bHhy'
+gmake: *** [Makefile:127: cmTC_ced0a/fast] Error 2
 
 
 File CheckSymbolExists.c:

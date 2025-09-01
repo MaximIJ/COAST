@@ -91,14 +91,14 @@ Instruction* hasStoreUsage(Value* i) {
 
 			// if the user is a compare instruction, we don't have to keep tracking it
 			//  because it fundamentally changes the type of data
-			if (CmpInst* cmpUse = dyn_cast<CmpInst>(instUse)) {
+			if (dyn_cast<CmpInst>(instUse)) {
 				continue;
 			}
 
 			// if its a store, then we're done
-			if (StoreInst* storeUse = dyn_cast<StoreInst>(instUse)) {
+			if (dyn_cast<StoreInst>(instUse)) {
 				return instUse;
-			} else if (CallInst* callUse = dyn_cast<CallInst>(instUse)) {
+			} else if (dyn_cast<CallInst>(instUse)) {
 				return instUse;
 			} else {
 				return hasStoreUsage(instUse);
@@ -124,11 +124,11 @@ Instruction* isDereferenced(Instruction* i, Instruction* ignoreThis) {
 			}
 
 			// look for stores or GEPs
-			if (StoreInst* storeUse = dyn_cast<StoreInst>(instUse)) {
+			if (dyn_cast<StoreInst>(instUse)) {
 				return instUse;
-			} else if (GetElementPtrInst* gepUse = dyn_cast<GetElementPtrInst>(instUse)) {
+			} else if (dyn_cast<GetElementPtrInst>(instUse)) {
 				return instUse;
-			} else if (CallInst* callUse = dyn_cast<CallInst>(instUse)) {
+			} else if (dyn_cast<CallInst>(instUse)) {
 				return instUse;
 			} else {
 				return isDereferenced(instUse, ignoreThis);
@@ -222,7 +222,7 @@ void writeToGlobalMap(GlobalFunctionSetMap &globalMap, GlobalVariable* gv, Funct
  * If one cannot be found, return nullptr
  */
 AllocaInst* findAllocaInst(Instruction* inst) {
-	for (int i = 0; i < inst->getNumOperands(); i++) {
+	for (unsigned i = 0; i < inst->getNumOperands(); i++) {
 		Value* nextVal = inst->getOperand(i);
 		if (AllocaInst* ai = dyn_cast<AllocaInst>(nextVal)) {
 			return ai;
@@ -325,12 +325,12 @@ bool dataflowProtection::comesFromSingleCall(Instruction* storeUse) {
 	bool returnVal = false;
 	static std::set<PHINode*> seenPhiSet;
 
-	for (int i = 0; i < storeUse->getNumOperands(); i++) {
+	for (unsigned i = 0; i < storeUse->getNumOperands(); i++) {
 		Value* nextVal = storeUse->getOperand(i);
 		if (CallInst* ci = dyn_cast<CallInst>(nextVal)) {
 			Function* calledF = ci->getCalledFunction();
 			// need to handle intrinsic functions here
-			if (calledF->getIntrinsicID() != Intrinsic::ID::not_intrinsic) {
+			if (calledF->getIntrinsicID() != Intrinsic::not_intrinsic) {
 				if (willBeCloned(ci)) {
 					returnVal = false;
 				} else {
@@ -403,7 +403,7 @@ long getCallArgIndex(Instruction* instUse, CallInst* callUse) {
 	// look at all the uses of the instruction
 	for (auto use: instUse->users()) {
 		// does it match any of the the arguments?
-		if (Instruction* nextUse = dyn_cast<Instruction>(use)) {
+		if (dyn_cast<Instruction>(use)) {
 //			if (verifyDebug) errs () << "      use:" << *nextUse << "\n";
 			for (unsigned int idx = 0; idx < callUse->getNumOperands(); idx += 1) {
 				Value* nextOp = callUse->getOperand(idx);
@@ -740,7 +740,7 @@ void dataflowProtection::verifyOptions(Module& M) {
 						// add it to the list of infractions
 						writeToGlobalMap(unPtWritesToPtGlbls, g, parentF, si);
 					}
-                    
+
                     /* note any load instructions to track later */
                     else if (LoadInst* li = dyn_cast<LoadInst>(UI)) {
                         LoadRecordType newRecord = std::make_tuple(li, g, parentF);
@@ -750,10 +750,10 @@ void dataflowProtection::verifyOptions(Module& M) {
 
             }
 			/* end instruction use */
-            
+
             /* GEPs are often inline */
 			else if (ConstantExpr* CE = dyn_cast<ConstantExpr>(u)) {
-                if (CE->isGEPWithNoNotionalOverIndexing()) {
+                if (CE->getOpcode() == Instruction::GetElementPtr) {
                     for (auto cu : CE->users()) {
 						if (LoadInst* li = dyn_cast<LoadInst>(cu)) {
                             Function* parentF = li->getParent()->getParent();
@@ -820,8 +820,7 @@ void dataflowProtection::verifyOptions(Module& M) {
 
                 /* GEPs are often inline */
 				else if (ConstantExpr* CE = dyn_cast<ConstantExpr>(u)) {
-					if (CE->isGEPWithNoNotionalOverIndexing()) {
-
+					if (CE->getOpcode() == Instruction::GetElementPtr) {
                         for (auto cu : CE->users()) {
 							/* GEPs used by stores are what we're looking for */
 							if (StoreInst* si = dyn_cast<StoreInst>(cu)) {
@@ -1002,7 +1001,7 @@ void dataflowProtection::verifyOptions(Module& M) {
 //				errs() << *use << "\n";
 //			}
 
-			if (argIdx >= calledFunction->arg_size()) {
+			if (static_cast<size_t>(argIdx) >= calledFunction->arg_size()) {
 				errs() << err_string
 					   << " function doesn't have that many arguments! (0 indexed)\n"
 					   << "  " << calledFunction->getName()
