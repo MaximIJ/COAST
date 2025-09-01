@@ -1721,7 +1721,7 @@ void dataflowProtection::insertStackProtection(Module& M) {
 				ret, commonArgs, glblType, "RetVal");
 
 			// load at the end
-			LoadInst* loadRet = new LoadInst(glblType, retAddrLcl, "loadRetAddr");
+			LoadInst* loadRet = new LoadInst(glblType, retAddrLcl, "loadRetAddr", false, Align(1));
 			// for some reason, have to do this separate from the constructor
 			loadRet->insertBefore(ret);
 
@@ -1739,7 +1739,7 @@ void dataflowProtection::insertStackProtection(Module& M) {
 			// Can vote and store
 			if (supportsAddrRetAddr && TMR) {
 				// Load the 2nd copy of the global
-				LoadInst* loadRet2 = new LoadInst(glblType, retAddrLcl_TMR, "loadRetAddr_TMR");
+				LoadInst* loadRet2 = new LoadInst(glblType, retAddrLcl_TMR, "loadRetAddr_TMR", false, Align(1));
 				loadRet2->insertBefore(ret);
 				// majority wins
 				SelectInst* sel = SelectInst::Create(cmp0, castRetValAgain,

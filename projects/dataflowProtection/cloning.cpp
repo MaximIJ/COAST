@@ -1284,11 +1284,11 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 
 		// store the addresses
 		StoreInst* storeRetAddr1, * storeRetAddr2;
-		storeRetAddr1 = new StoreInst(&*argIt, alloc1);
+		storeRetAddr1 = new StoreInst(&*argIt, alloc1, false, Align(1));
 		storeRetAddr1->insertAfter(alloc1);
         storeRetAddr1->setAlignment(Align(alignNum));
 		if (TMR) {
-			storeRetAddr2 = new StoreInst(&*(argIt+1), alloc2);
+			storeRetAddr2 = new StoreInst(&*(argIt+1), alloc2, false, Align(1));
 			storeRetAddr2->insertAfter(alloc2);
             storeRetAddr2->setAlignment(Align(alignNum));
 		}
@@ -1481,15 +1481,13 @@ void dataflowProtection::updateRRFuncs(Module& M) {
 
                 ////////////// load return clones //////////////
 
-                auto *pt1 = cast<PointerType>(callAlloca1->getType());
                 LoadInst* loadRet1 = new LoadInst(
-                        pt1->getElementType(), callAlloca1, newInst->getName() + ".DWC", false, Align(1));
+                        normalRetType, callAlloca1, newInst->getName() + ".DWC", false, Align(1));
 				loadRet1->insertAfter(newInst);
 				LoadInst* loadRet2;
 				if (TMR) {
-                    auto *pt2 = cast<PointerType>(callAlloca2->getType());
                     loadRet2 = new LoadInst(
-                            pt2->getElementType(), callAlloca2, newInst->getName() + ".TMR", false, Align(1));
+                            normalRetType, callAlloca2, newInst->getName() + ".TMR", false, Align(1));
 					loadRet2->insertAfter(loadRet1);
 				}
 				// register them as clones
@@ -1705,8 +1703,9 @@ void dataflowProtection::updateCallInsns(Module & M) {
 							assert(clone1 && "value is cloned!");
 
 							// load the original
-							auto *ptrTy = cast<PointerType>(op->getType());
-							LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
+							// In LLVM 16, we need to determine the load type from context
+							Type* loadType = clone1->getType();
+							LoadInst* loadOrig = new LoadInst(loadType, op, "loadOrig", false, Align(1));
 							loadOrig->insertAfter(CI);
 
 							// store to the copy
@@ -1742,8 +1741,9 @@ void dataflowProtection::updateCallInsns(Module & M) {
 							assert(clone1 && "value is cloned!");
 
 							// load original
-							auto *ptrTy = cast<PointerType>(op->getType());
-							LoadInst* loadOrig = new LoadInst(ptrTy->getElementType(), op, "loadOrig", false, Align(1));
+							// In LLVM 16, we need to determine the load type from context
+							Type* loadType = clone1->getType();
+							LoadInst* loadOrig = new LoadInst(loadType, op, "loadOrig", false, Align(1));
 							loadOrig->insertAfter(CI);
 
 							// store to copy
@@ -2641,8 +2641,7 @@ void dataflowProtection::cloneMetadata(Module& M, Function* Fnew) {
 
 	// TODO: make this more robust, in case only some arguments were cloned
 	for (unsigned i = 0; i < dtypeArray.size(); i+=1) {
-		DITypeRef t = dtypeArray[i];
-		auto tr = t.resolve();
+		DIType* tr = dtypeArray[i];
 		typs.push_back(tr);
 
 		if (tr) {

@@ -11,6 +11,7 @@
 #include <llvm/IR/Constants.h>
 #include <llvm/IR/Instructions.h>
 #include <llvm/IR/InstrTypes.h>
+#include <llvm/IR/Operator.h>
 
 using namespace llvm;
 
@@ -55,9 +56,9 @@ public:
   static char ID;
   dataflowProtection() : ModulePass(ID) {}
 
-  bool runOnModule(Module&M);
+  bool runOnModule(Module&M) override;
   bool run(Module&M, int numClones);
-  void getAnalysisUsage(AnalysisUsage& AU) const ;
+  void getAnalysisUsage(AnalysisUsage& AU) const override;
 
 private:
 
