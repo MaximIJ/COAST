@@ -83,18 +83,130 @@ TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/TMRNewPM.cpp.s"
 	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/TMR/TMRNewPM.cpp -o CMakeFiles/TMR.dir/TMRNewPM.cpp.s
 
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/dataflowProtection.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/dataflowProtection.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/dataflowProtection.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/dataflowProtection.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/cloning.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/cloning.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/cloning.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/cloning.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/synchronization.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/synchronization.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/synchronization.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/synchronization.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/utils.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/utils.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/utils.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/utils.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/verification.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/verification.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/verification.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/verification.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/interface.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/interface.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/interface.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/interface.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.s
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o: TMR/CMakeFiles/TMR.dir/flags.make
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o: /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/inspection.cpp
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o: TMR/CMakeFiles/TMR.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o -MF CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o.d -o CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/inspection.cpp
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.i"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/inspection.cpp > CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.i
+
+TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.s"
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/m4x/Documents/Work/UA/coast/COAST/projects/dataflowProtection/inspection.cpp -o CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.s
+
 # Object files for target TMR
 TMR_OBJECTS = \
-"CMakeFiles/TMR.dir/TMRNewPM.cpp.o"
+"CMakeFiles/TMR.dir/TMRNewPM.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o" \
+"CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o"
 
 # External object files for target TMR
 TMR_EXTERNAL_OBJECTS =
 
 TMR/TMR.so: TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o
+TMR/TMR.so: TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o
 TMR/TMR.so: TMR/CMakeFiles/TMR.dir/build.make
 TMR/TMR.so: /usr/lib/llvm-16/lib/libLLVM-16.so.1
 TMR/TMR.so: TMR/CMakeFiles/TMR.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX shared module TMR.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX shared module TMR.so"
 	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/TMR.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

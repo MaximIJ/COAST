@@ -61,6 +61,7 @@ bool dataflowProtection::runOnModule(Module &M) {
 }
 
 bool dataflowProtection::run(Module &M, int numClones) {
+	llvm::outs() << "Running dataflowProtection passssss\n";
 	// Remove user functions that are never called in the module to reduce code size, processing time
 	// These are mainly inlined by prior optimizations
 	if (verboseFlag)

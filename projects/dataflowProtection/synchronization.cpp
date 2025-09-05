@@ -579,7 +579,7 @@ void dataflowProtection::processCallSync(CallInst* currCallInst, GlobalVariable*
 	}
 
 	std::deque<Value*> cloneableOperandsList;
-        for (unsigned int it = 0; it < currCallInst->getNumOperands(); it++) {
+        for (unsigned int it = 0; it < currCallInst->arg_size(); it++) {
 		if (isa<Constant>(currCallInst->getArgOperand(it))
 				|| isa<GetElementPtrInst>(currCallInst->getArgOperand(it)))
 			continue;
