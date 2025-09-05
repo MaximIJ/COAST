@@ -107,7 +107,7 @@ void dataflowProtection::populateValuesToClone(Module& M) {
 					}
 
                     // Clone constants in the function call
-                    for (unsigned int i = 0; i < ci->getNumOperands(); i++) {
+                    for (unsigned int i = 0; i < ci->arg_size(); i++) {
 						Value * arg = ci->getArgOperand(i);
 						if (ConstantExpr * e = dyn_cast<ConstantExpr>(arg)) {
 							constantExprToClone.insert(e);
@@ -622,7 +622,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				 */
 
 				// clone the operands
-                for (unsigned int i = 0; i < invInst->getNumOperands(); i++) {
+                for (unsigned int i = 0; i < invInst->arg_size(); i++) {
 					if (willBeCloned(invInst->getArgOperand(i))) {
 						cloneArg[i] = true;
 					}
@@ -673,7 +673,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				continue;
 			}
 
-            for (unsigned int i = 0; i < callInst->getNumOperands(); i++) {
+            for (unsigned int i = 0; i < callInst->arg_size(); i++) {
 				if (willBeCloned(callInst->getArgOperand(i))) {
 					cloneArg[i] = true;
 				}
@@ -871,7 +871,8 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 					}
 				}
 
-			} else if (CallInst* callInst = dyn_cast<CallInst>(u)) {
+			} else if (CallBase* callBase = dyn_cast<CallBase>(u)) {
+				if (CallInst* callInst = dyn_cast<CallInst>(callBase)) {
 				assert(callInst && "Replacing function calls in cloneFnArgs");
 
 				Function* parentFn = callInst->getParent()->getParent();
@@ -914,15 +915,15 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				 * Special check for calls to variadic functions.
 				 * Make sure to add the extra arguments to the new function call.
 				 */
-                if (F->isVarArg() && (callInst->getNumOperands() > numArgs)) {
+                if (F->isVarArg() && (callInst->arg_size() > numArgs)) {
 					#ifdef DBG_CLN_FN_ARGS
 					if (debugFlag) {
-						errs() << " - orig call has " << callInst->getNumArgOperands() << " arguments\n";
+						errs() << " - orig call has " << callInst->arg_size() << " arguments\n";
 						errs() << " - new var arg? " << Fnew->isVarArg() << "\n";
 					}
 					#endif
 					// add the rest
-                    for (unsigned int i = numArgs; i < callInst->getNumOperands(); i++) {
+                    for (unsigned int i = numArgs; i < callInst->arg_size(); i++) {
 						Value* extraArg = callInst->getArgOperand(i);
 						args.push_back(extraArg);
 					}
@@ -975,7 +976,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 
 				callInst->replaceAllUsesWith(newCallInst);
 				callInst->eraseFromParent();
-			} else if (InvokeInst* invInst = dyn_cast<InvokeInst>(u)) {
+				} else if (InvokeInst* invInst = dyn_cast<InvokeInst>(callBase)) {
 				assert(invInst && "Replacing function calls in cloneFnArgs");
 
 				Function* parentFn = invInst->getParent()->getParent();
@@ -1027,9 +1028,17 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				// Replace all uses of the original call instruction with the new one
 				invInst->replaceAllUsesWith(newInvInst);
 				invInst->eraseFromParent();
+				} else {
+					// Handle other call instruction types (e.g., CallBrInst)
+					if (verboseFlag) {
+						errs() << "Warning: Unsupported call instruction type: " << *callBase << "\n";
+					}
+				}
 			} else {
-				assert(false && "wrong type!\n");
-//				TODO: what would cause this to fail?
+				// Not a call instruction at all
+				if (verboseFlag) {
+					errs() << "Warning: Expected call instruction but got: " << *u << "\n";
+				}
 			}
 
 		}

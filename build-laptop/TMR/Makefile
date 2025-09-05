@@ -227,6 +227,174 @@ TMRNewPM.cpp.s:
 	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.s
 .PHONY : TMRNewPM.cpp.s
 
+__/dataflowProtection/cloning.o: __/dataflowProtection/cloning.cpp.o
+.PHONY : __/dataflowProtection/cloning.o
+
+# target to build an object file
+__/dataflowProtection/cloning.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.o
+.PHONY : __/dataflowProtection/cloning.cpp.o
+
+__/dataflowProtection/cloning.i: __/dataflowProtection/cloning.cpp.i
+.PHONY : __/dataflowProtection/cloning.i
+
+# target to preprocess a source file
+__/dataflowProtection/cloning.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.i
+.PHONY : __/dataflowProtection/cloning.cpp.i
+
+__/dataflowProtection/cloning.s: __/dataflowProtection/cloning.cpp.s
+.PHONY : __/dataflowProtection/cloning.s
+
+# target to generate assembly for a file
+__/dataflowProtection/cloning.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/cloning.cpp.s
+.PHONY : __/dataflowProtection/cloning.cpp.s
+
+__/dataflowProtection/dataflowProtection.o: __/dataflowProtection/dataflowProtection.cpp.o
+.PHONY : __/dataflowProtection/dataflowProtection.o
+
+# target to build an object file
+__/dataflowProtection/dataflowProtection.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.o
+.PHONY : __/dataflowProtection/dataflowProtection.cpp.o
+
+__/dataflowProtection/dataflowProtection.i: __/dataflowProtection/dataflowProtection.cpp.i
+.PHONY : __/dataflowProtection/dataflowProtection.i
+
+# target to preprocess a source file
+__/dataflowProtection/dataflowProtection.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.i
+.PHONY : __/dataflowProtection/dataflowProtection.cpp.i
+
+__/dataflowProtection/dataflowProtection.s: __/dataflowProtection/dataflowProtection.cpp.s
+.PHONY : __/dataflowProtection/dataflowProtection.s
+
+# target to generate assembly for a file
+__/dataflowProtection/dataflowProtection.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/dataflowProtection.cpp.s
+.PHONY : __/dataflowProtection/dataflowProtection.cpp.s
+
+__/dataflowProtection/inspection.o: __/dataflowProtection/inspection.cpp.o
+.PHONY : __/dataflowProtection/inspection.o
+
+# target to build an object file
+__/dataflowProtection/inspection.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.o
+.PHONY : __/dataflowProtection/inspection.cpp.o
+
+__/dataflowProtection/inspection.i: __/dataflowProtection/inspection.cpp.i
+.PHONY : __/dataflowProtection/inspection.i
+
+# target to preprocess a source file
+__/dataflowProtection/inspection.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.i
+.PHONY : __/dataflowProtection/inspection.cpp.i
+
+__/dataflowProtection/inspection.s: __/dataflowProtection/inspection.cpp.s
+.PHONY : __/dataflowProtection/inspection.s
+
+# target to generate assembly for a file
+__/dataflowProtection/inspection.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/inspection.cpp.s
+.PHONY : __/dataflowProtection/inspection.cpp.s
+
+__/dataflowProtection/interface.o: __/dataflowProtection/interface.cpp.o
+.PHONY : __/dataflowProtection/interface.o
+
+# target to build an object file
+__/dataflowProtection/interface.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.o
+.PHONY : __/dataflowProtection/interface.cpp.o
+
+__/dataflowProtection/interface.i: __/dataflowProtection/interface.cpp.i
+.PHONY : __/dataflowProtection/interface.i
+
+# target to preprocess a source file
+__/dataflowProtection/interface.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.i
+.PHONY : __/dataflowProtection/interface.cpp.i
+
+__/dataflowProtection/interface.s: __/dataflowProtection/interface.cpp.s
+.PHONY : __/dataflowProtection/interface.s
+
+# target to generate assembly for a file
+__/dataflowProtection/interface.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/interface.cpp.s
+.PHONY : __/dataflowProtection/interface.cpp.s
+
+__/dataflowProtection/synchronization.o: __/dataflowProtection/synchronization.cpp.o
+.PHONY : __/dataflowProtection/synchronization.o
+
+# target to build an object file
+__/dataflowProtection/synchronization.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.o
+.PHONY : __/dataflowProtection/synchronization.cpp.o
+
+__/dataflowProtection/synchronization.i: __/dataflowProtection/synchronization.cpp.i
+.PHONY : __/dataflowProtection/synchronization.i
+
+# target to preprocess a source file
+__/dataflowProtection/synchronization.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.i
+.PHONY : __/dataflowProtection/synchronization.cpp.i
+
+__/dataflowProtection/synchronization.s: __/dataflowProtection/synchronization.cpp.s
+.PHONY : __/dataflowProtection/synchronization.s
+
+# target to generate assembly for a file
+__/dataflowProtection/synchronization.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/synchronization.cpp.s
+.PHONY : __/dataflowProtection/synchronization.cpp.s
+
+__/dataflowProtection/utils.o: __/dataflowProtection/utils.cpp.o
+.PHONY : __/dataflowProtection/utils.o
+
+# target to build an object file
+__/dataflowProtection/utils.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.o
+.PHONY : __/dataflowProtection/utils.cpp.o
+
+__/dataflowProtection/utils.i: __/dataflowProtection/utils.cpp.i
+.PHONY : __/dataflowProtection/utils.i
+
+# target to preprocess a source file
+__/dataflowProtection/utils.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.i
+.PHONY : __/dataflowProtection/utils.cpp.i
+
+__/dataflowProtection/utils.s: __/dataflowProtection/utils.cpp.s
+.PHONY : __/dataflowProtection/utils.s
+
+# target to generate assembly for a file
+__/dataflowProtection/utils.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/utils.cpp.s
+.PHONY : __/dataflowProtection/utils.cpp.s
+
+__/dataflowProtection/verification.o: __/dataflowProtection/verification.cpp.o
+.PHONY : __/dataflowProtection/verification.o
+
+# target to build an object file
+__/dataflowProtection/verification.cpp.o:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.o
+.PHONY : __/dataflowProtection/verification.cpp.o
+
+__/dataflowProtection/verification.i: __/dataflowProtection/verification.cpp.i
+.PHONY : __/dataflowProtection/verification.i
+
+# target to preprocess a source file
+__/dataflowProtection/verification.cpp.i:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.i
+.PHONY : __/dataflowProtection/verification.cpp.i
+
+__/dataflowProtection/verification.s: __/dataflowProtection/verification.cpp.s
+.PHONY : __/dataflowProtection/verification.s
+
+# target to generate assembly for a file
+__/dataflowProtection/verification.cpp.s:
+	cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && $(MAKE) $(MAKESILENT) -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/__/dataflowProtection/verification.cpp.s
+.PHONY : __/dataflowProtection/verification.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -245,6 +413,27 @@ help:
 	@echo "... TMRNewPM.o"
 	@echo "... TMRNewPM.i"
 	@echo "... TMRNewPM.s"
+	@echo "... __/dataflowProtection/cloning.o"
+	@echo "... __/dataflowProtection/cloning.i"
+	@echo "... __/dataflowProtection/cloning.s"
+	@echo "... __/dataflowProtection/dataflowProtection.o"
+	@echo "... __/dataflowProtection/dataflowProtection.i"
+	@echo "... __/dataflowProtection/dataflowProtection.s"
+	@echo "... __/dataflowProtection/inspection.o"
+	@echo "... __/dataflowProtection/inspection.i"
+	@echo "... __/dataflowProtection/inspection.s"
+	@echo "... __/dataflowProtection/interface.o"
+	@echo "... __/dataflowProtection/interface.i"
+	@echo "... __/dataflowProtection/interface.s"
+	@echo "... __/dataflowProtection/synchronization.o"
+	@echo "... __/dataflowProtection/synchronization.i"
+	@echo "... __/dataflowProtection/synchronization.s"
+	@echo "... __/dataflowProtection/utils.o"
+	@echo "... __/dataflowProtection/utils.i"
+	@echo "... __/dataflowProtection/utils.s"
+	@echo "... __/dataflowProtection/verification.o"
+	@echo "... __/dataflowProtection/verification.i"
+	@echo "... __/dataflowProtection/verification.s"
 .PHONY : help
 
 

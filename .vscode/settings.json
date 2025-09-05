@@ -1,3 +1,7 @@
 {
-  "cmake.sourceDirectory": "/home/m4x/Documents/Work/UA/coast/COAST/projects"
+  "cmake.sourceDirectory": "/home/m4x/Documents/Work/UA/coast/COAST/projects",
+  "files.associations": {
+    "iostream": "c",
+    "stdio.h": "c"
+  }
 }

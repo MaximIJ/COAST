@@ -372,10 +372,12 @@ void dataflowProtection::processAnnotations(Module& M) {
 				auto e = cast<ConstantStruct>(a->getOperand(i));
 
 				// extract data
-				auto anno = cast<ConstantDataArray>(cast<GlobalVariable>(e->getOperand(1)->getOperand(0))->getOperand(0))->getAsCString();
+				auto anno_operand = e->getOperand(1)->getOperand(0);
+				if (auto gv = dyn_cast<GlobalVariable>(anno_operand)) {
+					auto anno = cast<ConstantDataArray>(gv->getOperand(0))->getAsCString();
 
-				// Function annotations
-				if (auto fn = dyn_cast<Function>(e->getOperand(0)->getOperand(0))) {
+					// Function annotations
+					if (auto fn = dyn_cast<Function>(e->getOperand(0)->getOperand(0))) {
 					if (anno == no_xMR_anno) {
 						if (verboseFlag) errs() << "Directive: do not clone function '" << fn->getName() << "'\n";
 						fnsToSkip.insert(fn);
@@ -471,9 +473,9 @@ void dataflowProtection::processAnnotations(Module& M) {
 						assert(false && "Invalid option on function");
 					}
 
-				}
-				// Global annotations
-				else if (auto gv = dyn_cast<GlobalVariable>(e->getOperand(0)->getOperand(0))) {
+					}
+					// Global annotations
+					else if (auto gv = dyn_cast<GlobalVariable>(e->getOperand(0)->getOperand(0))) {
 					if (anno == no_xMR_anno) {
 						if (verboseFlag) errs() << "Directive: do not clone global variable '" << gv->getName() << "'\n";
 						globalsToSkip.insert(gv);
@@ -489,9 +491,13 @@ void dataflowProtection::processAnnotations(Module& M) {
 						if (verboseFlag) errs() << "Directive: " << anno << "\n";
 						assert(false && "Invalid option on global value");
 					}
-				}
-				else {
-					assert(false && "Non-function annotation");
+					}
+					else {
+						assert(false && "Non-function annotation");
+					}
+				} else {
+					// Skip annotation if we can't extract the string properly
+					if (verboseFlag) errs() << "Warning: Could not extract annotation string, skipping\n";
 				}
 			}
 		} else {

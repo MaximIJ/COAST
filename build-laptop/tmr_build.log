@@ -1,0 +1,32 @@
+/usr/bin/cmake -S/home/m4x/Documents/Work/UA/coast/COAST/projects -B/home/m4x/Documents/Work/UA/coast/COAST/build-laptop --check-build-system CMakeFiles/Makefile.cmake 0
+Re-run cmake, missing byproduct: TMR/CMakeFiles/CMakeDirectoryInformation.cmake
+-- Found LLVM 16.0.6
+-- Using LLVMConfig.cmake in: /usr/lib/llvm-16/cmake
+-- Building with -fPIC
+-- Registering DataflowProtection as a pass plugin (static build: OFF)
+-- Registering TMR as a pass plugin (static build: OFF)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/m4x/Documents/Work/UA/coast/COAST/build-laptop
+make  -f CMakeFiles/Makefile2 TMR
+make[1]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+/usr/bin/cmake -S/home/m4x/Documents/Work/UA/coast/COAST/projects -B/home/m4x/Documents/Work/UA/coast/COAST/build-laptop --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles 2
+make  -f CMakeFiles/Makefile2 TMR/CMakeFiles/TMR.dir/all
+make[2]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+make  -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/depend
+make[3]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /home/m4x/Documents/Work/UA/coast/COAST/projects /home/m4x/Documents/Work/UA/coast/COAST/projects/TMR /home/m4x/Documents/Work/UA/coast/COAST/build-laptop /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR/CMakeFiles/TMR.dir/DependInfo.cmake --color=
+make[3]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+make  -f TMR/CMakeFiles/TMR.dir/build.make TMR/CMakeFiles/TMR.dir/build
+make[3]: Entering directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+[ 50%] Building CXX object TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.o
+cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/c++ -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS -I/usr/lib/llvm-16/include -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -ffunction-sections -fdata-sections -fPIC   -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS  -fno-exceptions -MD -MT TMR/CMakeFiles/TMR.dir/TMRNewPM.cpp.o -MF CMakeFiles/TMR.dir/TMRNewPM.cpp.o.d -o CMakeFiles/TMR.dir/TMRNewPM.cpp.o -c /home/m4x/Documents/Work/UA/coast/COAST/projects/TMR/TMRNewPM.cpp
+[100%] Linking CXX shared module TMR.so
+cd /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/TMR && /usr/bin/cmake -E cmake_link_script CMakeFiles/TMR.dir/link.txt --verbose=1
+/usr/bin/c++ -fPIC  -fPIC -fno-semantic-interposition -fvisibility-inlines-hidden -Werror=date-time -Wall -Wextra -Wno-unused-parameter -Wwrite-strings -Wcast-qual -Wno-missing-field-initializers -Wimplicit-fallthrough -Wno-class-memaccess -Wno-redundant-move -Wno-pessimizing-move -Wno-noexcept-type -Wdelete-non-virtual-dtor -Wsuggest-override -Wno-comment -Wno-misleading-indentation -Wctad-maybe-unsupported -ffunction-sections -fdata-sections  -Wl,-rpath-link,  -Wl,--gc-sections  -Wl,-z,nodelete -shared  -o TMR.so CMakeFiles/TMR.dir/TMRNewPM.cpp.o  -Wl,-rpath,"\$ORIGIN/../lib:/usr/lib/llvm-16/lib:" /usr/lib/llvm-16/lib/libLLVM-16.so.1 
+make[3]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+[100%] Built target TMR
+make[2]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'
+/usr/bin/cmake -E cmake_progress_start /home/m4x/Documents/Work/UA/coast/COAST/build-laptop/CMakeFiles 0
+make[1]: Leaving directory '/home/m4x/Documents/Work/UA/coast/COAST/build-laptop'

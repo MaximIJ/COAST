@@ -1,9 +1,9 @@
 #include "../dataflowProtection/dataflowProtection.h"
 #include "llvm/IR/Module.h"
+
 #include "llvm/IR/PassManager.h"
 #include "llvm/Passes/PassBuilder.h"
 #include "llvm/Passes/PassPlugin.h"
-#include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;
 
@@ -11,13 +11,16 @@ namespace {
 
 struct TMRPass : PassInfoMixin<TMRPass> {
   PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
-    errs() << "TMR Pass starting on module: " << M.getName() << "\n";
-
     dataflowProtection DP;
-    bool changed = DP.run(M, 3); // TMR mode
+    DP.run(M, 3); // Triplication
+    return PreservedAnalyses::none();
+  }
+};
 
-    errs() << "TMR Pass finished. Changed: " << (changed ? "YES" : "NO") << "\n";
-
+struct DWCNewPMPass : PassInfoMixin<DWCNewPMPass> {
+  PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+    dataflowProtection DP;
+    DP.run(M, 2); // Duplication with compare
     return PreservedAnalyses::none();
   }
 };
@@ -25,23 +28,23 @@ struct TMRPass : PassInfoMixin<TMRPass> {
 } // namespace
 
 extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
-  errs() << "TMR Plugin Info requested - registering passes\n";
-
-  return {LLVM_PLUGIN_API_VERSION, "TMR_Plugin", "1.0",
+  return {LLVM_PLUGIN_API_VERSION, "COAST_TMR_DWC", "0.1",
           [](PassBuilder &PB) {
-            errs() << "Registering TMR pass in pipeline\n";
-
             PB.registerPipelineParsingCallback(
                 [](StringRef Name, ModulePassManager &MPM,
                    ArrayRef<PassBuilder::PipelineElement>) {
-                  errs() << "Pipeline callback called with: '" << Name << "'\n";
-
                   if (Name == "tmr") {
-                    errs() << "Adding TMR pass to pipeline\n";
                     MPM.addPass(TMRPass());
+                    return true;
+                  }
+                  if (Name == "dwc") {
+                    MPM.addPass(DWCNewPMPass());
                     return true;
                   }
                   return false;
                 });
           }};
 }
+
+
+
