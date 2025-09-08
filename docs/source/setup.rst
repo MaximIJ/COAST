@@ -28,8 +28,8 @@ With Ubuntu 18.04 and higher, use the following commands:
 
 .. code-block:: bash
 
-    sudo apt install llvm-7
-    sudo apt install clang-7
+    sudo apt install llvm-16
+    sudo apt install clang-16
 
 Other Linux distributions may also have packages available.
 

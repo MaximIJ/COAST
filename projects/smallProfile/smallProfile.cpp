@@ -7,12 +7,17 @@
  * August 2019
  */
 
-#define DEBUG_TYPE "debugStatements"
+#define DEBUG_TYPE "smallProfile"
 
 #include <string>
 #include <set>
 #include <llvm/IR/Module.h>
 #include <llvm/IR/Instructions.h>
+#include <llvm/IR/PassManager.h>
+#include <llvm/Pass.h>
+#include <llvm/PassSupport.h>
+#include <llvm/Passes/PassBuilder.h>
+#include <llvm/Passes/PassPlugin.h>
 #include "llvm/Support/raw_ostream.h"
 #include <llvm/IR/Constants.h>
 #include <llvm/Support/Debug.h>

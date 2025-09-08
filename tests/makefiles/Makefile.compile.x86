@@ -160,3 +160,6 @@ debug_print:
 	@echo CPP_SRCS = $(CPP_SRCS)
 	@echo BCFILES = $(BCFILES)
 	@echo BCPPFILES = $(BCPPFILES)
+
+# Include New Pass Manager support
+include $(LEVEL)/makefiles/Makefile.npm_support

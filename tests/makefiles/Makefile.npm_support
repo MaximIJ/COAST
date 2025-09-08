@@ -1,0 +1,29 @@
+# New Pass Manager Support Configuration
+
+# Build directory paths
+PROJECT_BUILD_DIR = $(COAST_ROOT)/projects/build/
+TMR_NPM_PLUGIN = $(PROJECT_BUILD_DIR)/TMR/TMR.so
+DWC_NPM_PLUGIN = $(PROJECT_BUILD_DIR)/DWC/DWC.so
+
+# For LLVM 16+, always use New Pass Manager
+ifneq (,$(wildcard $(TMR_NPM_PLUGIN)))
+    # New Pass Manager approach (LLVM 16+)
+    OPT_PLUGIN_FLAGS = -load-pass-plugin=$(TMR_NPM_PLUGIN)
+    TMR_PASS_FLAG = -passes=tmr
+    DWC_PASS_FLAG = -passes=dwc
+    USE_NPM = 1
+else
+    $(error TMR plugin not found at $(TMR_NPM_PLUGIN). Please build the project first with 'make TMR')
+endif
+
+# Updated optimizer rule for New Pass Manager
+$(TARGET).opt.bc: $(TARGET).lbc
+	@echo -e $(COLOR_BLUE)Running through optimizer $(NO_COLOR)
+	@echo "  flags = $(OPT_FLAGS) $(OPT_PASSES)"
+	@echo "# Use New Pass Manager"
+	@$(LLVM_OPT) $(OPT_FLAGS) $(OPT_PLUGIN_FLAGS) $(subst -TMR,$(TMR_PASS_FLAG),$(subst -DWC,$(DWC_PASS_FLAG),$(OPT_PASSES))) -o $@ $<
+	@$(LLVM_DIS) -f $@
+
+# For debugging: show what command would be run
+debug_opt_command:
+	@echo "Would run: $(LLVM_OPT) $(OPT_FLAGS) $(OPT_PLUGIN_FLAGS) $(subst -TMR,$(TMR_PASS_FLAG),$(subst -DWC,$(DWC_PASS_FLAG),$(OPT_PASSES))) -o $(TARGET).opt.bc $(TARGET).lbc"

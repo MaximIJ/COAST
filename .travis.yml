@@ -5,8 +5,8 @@ dist: bionic
 addons:
   apt:
     packages:
-      - clang-7
-      - llvm-7
+      - clang-16
+      - llvm-16
       - libc++-dev
       - libc++abi-dev
       - qemu-system-arm

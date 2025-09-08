@@ -2,8 +2,11 @@
 
 #include "../dataflowProtection/dataflowProtection.h"
 
+#include <llvm/IR/PassManager.h>
 #include <llvm/Pass.h>
 #include <llvm/PassSupport.h>
+#include <llvm/Passes/PassBuilder.h>
+#include <llvm/Passes/PassPlugin.h>
 
 #include <llvm/Support/raw_ostream.h>
 #include <llvm/Support/Debug.h>

@@ -52,13 +52,13 @@ INCLUDEFILES := $(wildcard *.h)
 LLVM_FROM_SOURCE 	:= $(or $(and $(wildcard $(LEVEL)/../build/bin),1),0)
 # variables added for COAST build flow
 ifeq ($(LLVM_FROM_SOURCE),0)
-CLANG 		:= clang-7
-LLVM_DIS 	:= llvm-dis-7
-LLVM_OPT 	:= opt-7
-LLVM_LLI 	:= lli-7
-LLVM_LLC 	:= llc-7
-LLVM_LINK	:= llvm-link-7
-LLVM_MC	  	:= llvm-mc-7
+CLANG 		:= clang-16
+LLVM_DIS 	:= llvm-dis-16
+LLVM_OPT 	:= opt-16
+LLVM_LLI 	:= lli-16
+LLVM_LLC 	:= llc-16
+LLVM_LINK	:= llvm-link-16
+LLVM_MC	  	:= llvm-mc-16
 else
 LLVM_ROOT   := $(LEVEL)/../build/bin
 CLANG 		:= $(LLVM_ROOT)/clang

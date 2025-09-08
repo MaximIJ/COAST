@@ -24,12 +24,12 @@ CPPFLAGS := -stdlib=libc++ -I/usr/include/c++/5.4.0/ -I/usr/include/x86_64-linux
 # CPPSTD - C++ standard to use when compiling files, default is c++11
 ###########################################################
 
-CLANG = clang-7
-CLANG++ = clang++-7
-LLVMDIS = llvm-dis-7
-LLVMOPT = opt-7
-LLVMLLC	= llc-7
-LLVMLINK= llvm-link-7
+CLANG = clang-16
+CLANG++ = clang++-16
+LLVMDIS = llvm-dis-16
+LLVMOPT = opt-16
+LLVMLLC	= llc-16
+LLVMLINK= llvm-link-16
 
 export COAST_ROOT = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))/../../
 

@@ -1,13 +1,13 @@
 LLVM_BIN = $(LLVM_BUILD_DIR)/bin
 
-CLANG 		:= clang-7
-CLANG++ 	:= clang++-7
-LLVM_DIS 	:= llvm-dis-7
-LLVM_OPT 	:= opt-7
-LLVM_LLI 	:= lli-7
-LLVM_LLC 	:= llc-7
-LLVM_LINK	:= llvm-link-7
-LLVM_MC	  	:= llvm-mc-7
+CLANG 		:= clang-16
+CLANG++ 	:= clang++-16
+LLVM_DIS 	:= llvm-dis-16
+LLVM_OPT 	:= opt-16
+LLVM_LLI 	:= lli-16
+LLVM_LLC 	:= llc-16
+LLVM_LINK	:= llvm-link-16
+LLVM_MC	  	:= llvm-mc-16
 
 PROJECT_BUILD_DIR = $(COAST_ROOT)/projects/build/
 rwildcard=$(wildcard $1$2)$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))

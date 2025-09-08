@@ -9,8 +9,8 @@ No support is offered for other versions.
 #### Ubuntu 18.04 and up:
 
 ```
-sudo apt install llvm-7
-sudo apt install clang-7
+sudo apt install llvm-16
+sudo apt install clang-16
 ```
 
 #### Other systems:
