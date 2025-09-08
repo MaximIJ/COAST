@@ -78,6 +78,10 @@
 #include "bf_locl.h"
 #include "bf_pi.h"
 
+/* Global variable definitions */
+BF_LONG key_P[BF_ROUNDS + 2];
+BF_LONG key_S[4 * 256];
+
 void memcpy(BF_LONG *s1, const BF_LONG *s2, int n) {
     BF_LONG *p1;
     const BF_LONG *p2;

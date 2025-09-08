@@ -61,6 +61,7 @@
  */
 
 #include "aes.h"
+#include <stdio.h>
 extern int main_result;
 
 /*  ******* encrypto ************ */

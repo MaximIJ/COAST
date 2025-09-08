@@ -86,8 +86,8 @@
 #define BF_LONG unsigned long
 
 #define BF_ROUNDS 16
-BF_LONG key_P[BF_ROUNDS + 2];
-BF_LONG key_S[4 * 256];
+extern BF_LONG key_P[BF_ROUNDS + 2];
+extern BF_LONG key_S[4 * 256];
 
 void BF_set_key(int len, unsigned char *data);
 void BF_encrypt(BF_LONG *data, int encrypt);

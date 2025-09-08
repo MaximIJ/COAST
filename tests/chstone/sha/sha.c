@@ -26,6 +26,11 @@
 
 #include "sha.h"
 
+/* Global variable definitions */
+LONG sha_info_digest[5];                   /* message digest */
+LONG sha_info_count_lo, sha_info_count_hi; /* 64-bit bit count */
+LONG sha_info_data[16];
+
 /* SHA f()-functions */
 
 #define f1(x, y, z) ((x & y) | (~x & z))

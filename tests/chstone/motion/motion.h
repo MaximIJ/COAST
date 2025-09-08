@@ -5,7 +5,7 @@ Not initially part of the test suite, added to improve code readability
 #ifndef __MOTION_H
 #define __MOTION_H
 
-unsigned int Get_Bits1();
+unsigned int Get_Bits1(void);
 unsigned int Get_Bits(int N);
 unsigned int Show_Bits(int N);
 void Flush_Buffer(int N);
@@ -17,8 +17,8 @@ void motion_vectors(int PMV[2][2][2], int dmvector[2],
                     int motion_vector_count, int mv_format, int h_r_size, int v_r_size,
                     int dmv, int mvscale);
 
-int Get_motion_code();
-int Get_dmvector();
+int Get_motion_code(void);
+int Get_dmvector(void);
 
 extern const unsigned char inRdbfr[];
 
