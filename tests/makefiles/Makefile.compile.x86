@@ -14,7 +14,7 @@ BCFILES		= $(patsubst %.c,%.clang.bc,$(notdir $(C_SRCS)))
 BCPPFILES	= $(patsubst %.cpp,%.clang.bcpp,$(notdir $(CPP_SRCS)))
 USER_INCS   ?=
 
-CLANG_FLAGS := -fcolor-diagnostics -fPIE $(USER_CFLAGS)
+CLANG_FLAGS := -fcolor-diagnostics -fPIC -fPIE $(USER_CFLAGS)
 # user link-time flags
 XLFLAGS 	?= -lm
 XLLCFLAGS   ?=
@@ -80,7 +80,7 @@ $(TARGET).out: $(TARGET).s
 ifeq ($(CPP_SRCS),)
 	@$(CLANG) $(TARGET).s $(XLFLAGS) -pie -o $@
 else
-	@$(CLANG++) $(TARGET).s $(XLFLAGS) -no-pie -o $@
+	@$(CLANG++) $(TARGET).s $(XLFLAGS) -pie -o $@
 endif
 
 ################## LLC ##################

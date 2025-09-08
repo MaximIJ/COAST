@@ -565,22 +565,33 @@ GlobalVariable* dataflowProtection::createGlobalVariable(Module& M,
 
 	// Get a type of the right size
 	Type* newGVtype = IntegerType::get(M.getContext(), byteSz * 8);
-	// Insert as constant first
-	Constant* newConstGV = M.getOrInsertGlobal(srName, newGVtype);
-	// Cast to correct type
-	newGV = cast<GlobalVariable>(newConstGV);
+	// // Insert as constant first
+	// Constant* newConstGV = M.getOrInsertGlobal(srName, newGVtype);
+	// // Cast to correct type
+	// newGV = cast<GlobalVariable>(newConstGV);
+	newGV = new GlobalVariable(
+		M, 		                                     // Module
+		newGVtype,                                   // Type
+		false,                                       // isConstant
+		GlobalValue::LinkageTypes::InternalLinkage,  // Linkage
+		ConstantInt::getNullValue(newGVtype),        // Initializer
+		srName,                                      // Name	
+		nullptr                                      // InsertBefore
+	);
 
 	// Set the properties
-    newGV->setConstant(false);
-    newGV->setInitializer(ConstantInt::getNullValue(newGVtype));
+    //newGV->setConstant(false);
+    //newGV->setInitializer(ConstantInt::getNullValue(newGVtype));
     newGV->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
     newGV->setAlignment(Align(byteSz));
 
 	// CRITICAL: Set linkage for PIE compatibility
-	newGV->setLinkage(GlobalValue::LinkageTypes::InternalLinkage);
+	//newGV->setLinkage(GlobalValue::LinkageTypes::InternalLinkage);
 
 	// For PIE, ensure proper visibility
 	newGV->setVisibility(GlobalValue::VisibilityTypes::DefaultVisibility);
+
+	newGV->setDSOLocal(true);
 
 	return newGV;
 }

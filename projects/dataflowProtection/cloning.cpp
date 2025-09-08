@@ -2489,12 +2489,25 @@ GlobalVariable * dataflowProtection::copyGlobal(Module & M, GlobalVariable* copy
 
 	}
 
+	GlobalValue::LinkageTypes linkage = GlobalValue::LinkageTypes::InternalLinkage;
+	// Determine PI-compatible linkage
+	// GlobalValue::LinkageTypes newLinkage;
+	// if (copyFrom->hasExternalLinkage() || copyFrom->hasPrivateLinkage()) {
+	// 	newLinkage = copyFrom->getLinkage();
+	// } else {
+	// 	newLinkage = GlobalValue::LinkageTypes::InternalLinkage;
+	// 	if (verboseFlag) {
+	// 		errs() << "Changed linkage from external to internal for PIE conpatibility" << newName << "\n";
+	// 	}
+	// }
+
 	// create new global
 	GlobalVariable* gNew = new GlobalVariable(
 		M,							/* Module */
 		copyFrom->getValueType(), 	/* Type */
 		copyFrom->isConstant(), 	/* isConstant */
-		copyFrom->getLinkage(),		/* Linkage */
+		//newLinkage,				    /* Linkage */
+		linkage,				    /* Linkage */
 		initializer,				/* Initializer */
 		newName,					/* Name */
 		copyFrom					/* InsertBefore */
@@ -2503,6 +2516,14 @@ GlobalVariable * dataflowProtection::copyGlobal(Module & M, GlobalVariable* copy
 	// copy the other attributes
 	gNew->setUnnamedAddr(copyFrom->getUnnamedAddr());
 	gNew->copyAttributesFrom(copyFrom);
+
+	// Set additional PIE-compatible properties
+	gNew->setDSOLocal(true); // Mark as local to the dynamic shared object
+
+	// Keep the same alignment as original
+	if (copyFrom->getAlign()) {
+		gNew->setAlignment(copyFrom->getAlign());
+	}
 
 	// copy the debug information
 	SmallVector<DIGlobalVariableExpression*, 4> debugInfo;
