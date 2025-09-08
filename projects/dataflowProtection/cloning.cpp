@@ -2467,100 +2467,183 @@ void dataflowProtection::cloneGlobals(Module & M) {
 
 }
 
+void dataflowProtection::verifyPIECompatibility(Module& M) {
+    //if (!verboseFlag) return;
+    
+    errs() << "=== PIE Compatibility Check ===\n";
+    
+    for (auto &GV : M.globals()) {
+        // Check for external linkage that might cause issues
+        if (GV.hasExternalLinkage() && !GV.isDeclaration()) {
+            errs() << "WARNING: Global variable with external linkage: " 
+                   << GV.getName() << " (may cause PIE issues)\n";
+        }
+        
+        // Check if DSO local is set (good for PIE)
+        if (!GV.isDSOLocal() && !GV.isDeclaration()) {
+            errs() << "WARNING: Global variable not marked DSO local: " 
+                   << GV.getName() << " (should be fixed for PIE)\n";
+        }
+        
+        // Report globals created by TMR pass (assuming they have specific naming pattern)
+        if (GV.getName().contains("seed_") || 
+            GV.getName().contains("_clone") || 
+            GV.getName().contains("TMR_")) {
+            errs() << "TMR Global: " << GV.getName() 
+                   << " Linkage: " << GV.getLinkage()
+                   << " DSO Local: " << (GV.isDSOLocal() ? "Yes" : "No") << "\n";
+        }
+    }
+    errs() << "=== End PIE Check ===\n";
+}
+
+void dataflowProtection::makeGlobalsPIECompatible(Module& M) {
+    if (verboseFlag) {
+        errs() << "=== Making globals PIE compatible ===\n";
+    }
+    
+    std::vector<GlobalVariable*> globalsToFix;
+    
+    // First, collect all globals that need fixing
+    for (auto &GV : M.globals()) {
+        // Skip LLVM intrinsic globals
+        if (GV.getName().startswith("llvm")) {
+            continue;
+        }
+        
+        // Skip external declarations (no definition)
+        if (GV.isDeclaration()) {
+            continue;
+        }
+        
+        // Skip globals that are already internal
+        if (GV.hasInternalLinkage()) {
+            continue;
+        }
+        
+        // Skip function pointers to ISRs
+        if (GV.getType()->isPointerTy() && GV.getNumOperands() == 1) {
+            auto gVal = GV.getOperand(0);
+            if (auto gFuncVal = dyn_cast<Function>(gVal)) {
+                if (isISR(*gFuncVal)) {
+                    continue;
+                }
+            }
+        }
+        
+        // This global needs to be fixed for PIE
+        if (GV.hasExternalLinkage() && GV.hasInitializer()) {
+            globalsToFix.push_back(&GV);
+        }
+    }
+    
+    // Now fix the linkage of these globals
+    for (auto GV : globalsToFix) {
+        if (verboseFlag) {
+            errs() << "Fixing global for PIE: " << GV->getName() 
+                   << " (changing from external to internal linkage)\n";
+        }
+        
+        // Change to internal linkage for PIE compatibility
+        GV->setLinkage(GlobalValue::LinkageTypes::InternalLinkage);
+        
+        // Ensure it's marked as DSO local
+        GV->setDSOLocal(true);
+        
+        // Set proper visibility
+        GV->setVisibility(GlobalValue::VisibilityTypes::DefaultVisibility);
+    }
+    
+    if (verboseFlag) {
+        errs() << "Fixed " << globalsToFix.size() << " globals for PIE compatibility\n";
+        errs() << "=== End PIE global fixes ===\n";
+    }
+}
+
 /*
  * Creates a new global of the same type as `copyFrom`, but with name `newName` instead,
  *  and inserts the new global before `copyFrom`.
  */
 GlobalVariable * dataflowProtection::copyGlobal(Module & M, GlobalVariable* copyFrom, std::string newName) {
 
-	Constant * initializer;
+    Constant * initializer;
 
-	if (globalsToRuntimeInit.find(copyFrom) == globalsToRuntimeInit.end()) {
-		initializer = copyFrom->getInitializer();
-	} else {
-		Type * initType = copyFrom->getInitializer()->getType();
+    if (globalsToRuntimeInit.find(copyFrom) == globalsToRuntimeInit.end()) {
+        initializer = copyFrom->getInitializer();
+    } else {
+        Type * initType = copyFrom->getInitializer()->getType();
 
-		// for now we only support runtime initialization of arrays
-		assert(isa<ArrayType>(initType));
+        // for now we only support runtime initialization of arrays
+        assert(isa<ArrayType>(initType));
 
-		initializer = ConstantAggregateZero::get(initType);
+        initializer = ConstantAggregateZero::get(initType);
 
-		if (verboseFlag)	errs() << "Using zero initializer for global " << newName << "\n";
+        if (verboseFlag)    errs() << "Using zero initializer for global " << newName << "\n";
+    }
 
-	}
+    // CRITICAL: Always use Internal linkage for PIE compatibility
+    GlobalValue::LinkageTypes linkage = GlobalValue::LinkageTypes::InternalLinkage;
+    
+    // For PIE, we need to avoid external linkage that could create absolute relocations
+    if (copyFrom->hasExternalLinkage()) {
+        if (verboseFlag) {
+            errs() << "Changed linkage from external to internal for PIE compatibility: " << newName << "\n";
+        }
+    }
 
-	GlobalValue::LinkageTypes linkage = GlobalValue::LinkageTypes::InternalLinkage;
-	// Determine PI-compatible linkage
-	// GlobalValue::LinkageTypes newLinkage;
-	// if (copyFrom->hasExternalLinkage() || copyFrom->hasPrivateLinkage()) {
-	// 	newLinkage = copyFrom->getLinkage();
-	// } else {
-	// 	newLinkage = GlobalValue::LinkageTypes::InternalLinkage;
-	// 	if (verboseFlag) {
-	// 		errs() << "Changed linkage from external to internal for PIE conpatibility" << newName << "\n";
-	// 	}
-	// }
+    // create new global
+    GlobalVariable* gNew = new GlobalVariable(
+        M,                            /* Module */
+        copyFrom->getValueType(),     /* Type */
+        copyFrom->isConstant(),       /* isConstant */
+        linkage,                      /* Linkage - Internal for PIE */
+        initializer,                  /* Initializer */
+        newName,                      /* Name */
+        copyFrom                      /* InsertBefore */
+    );
 
-	// create new global
-	GlobalVariable* gNew = new GlobalVariable(
-		M,							/* Module */
-		copyFrom->getValueType(), 	/* Type */
-		copyFrom->isConstant(), 	/* isConstant */
-		//newLinkage,				    /* Linkage */
-		linkage,				    /* Linkage */
-		initializer,				/* Initializer */
-		newName,					/* Name */
-		copyFrom					/* InsertBefore */
-	);
+    // copy the other attributes
+    gNew->setUnnamedAddr(copyFrom->getUnnamedAddr());
+    gNew->copyAttributesFrom(copyFrom);
 
-	// copy the other attributes
-	gNew->setUnnamedAddr(copyFrom->getUnnamedAddr());
-	gNew->copyAttributesFrom(copyFrom);
+    // CRITICAL: Set PIE-compatible properties
+    gNew->setDSOLocal(true);              // Mark as local to the dynamic shared object
+    gNew->setVisibility(GlobalValue::VisibilityTypes::DefaultVisibility);
 
-	// Set additional PIE-compatible properties
-	gNew->setDSOLocal(true); // Mark as local to the dynamic shared object
+    // Keep the same alignment as original
+    if (copyFrom->getAlign()) {
+        gNew->setAlignment(copyFrom->getAlign());
+    }
 
-	// Keep the same alignment as original
-	if (copyFrom->getAlign()) {
-		gNew->setAlignment(copyFrom->getAlign());
-	}
+    // copy the debug information
+    SmallVector<DIGlobalVariableExpression*, 4> debugInfo;
+    copyFrom->getDebugInfo(debugInfo);
+    for (auto dbg : debugInfo) {
+        // we need to make a new entry for the variable name
+        auto dbgVar = dbg->getVariable();
 
-	// copy the debug information
-	SmallVector<DIGlobalVariableExpression*, 4> debugInfo;
-	copyFrom->getDebugInfo(debugInfo);
-	for (auto dbg : debugInfo) {
-		// we need to make a new entry for the variable name
-		auto dbgVar = dbg->getVariable();
+        // first, get the variable type
+        DIType* varType = dyn_cast<DIType>(dbgVar->getRawType());
+        // use debug info builder
+        DIGlobalVariableExpression* newDbgInfo =
+                dBuilder->createGlobalVariableExpression(
+                    dbgVar->getScope(),         /* DIScope* Context */
+                    gNew->getName(),            /* StringRef Name */
+                    dbgVar->getLinkageName(),   /* StringRef LinkageName */
+                    dbgVar->getFile(),          /* DIFile* File */
+                    dbgVar->getLine(),          /* unsigned LineNo */
+                    varType,                    /* DIType* Ty */
+                    dbgVar->isLocalToUnit(),    /* bool isLocalToUnit */
+                    dbg->getExpression()        /* DIExpression* Expr */
+                );
 
-		// first, get the variable type
-		DIType* varType = dyn_cast<DIType>(dbgVar->getRawType());
-		// use debug info builder
-		DIGlobalVariableExpression* newDbgInfo =
-				dBuilder->createGlobalVariableExpression(
-					dbgVar->getScope(), 		/* DIScope* Context */
-					gNew->getName(), 			/* StringRef Name */
-					dbgVar->getLinkageName(), 	/* StringRef LinkageName */
-					dbgVar->getFile(), 			/* DIFile* File */
-					dbgVar->getLine(), 			/* unsigned LineNo */
-					varType, 					/* DIType* Ty */
-					dbgVar->isLocalToUnit(), 	/* bool isLocalToUnit */
-					/* bool isDefined - not in the version we're using */
-					dbg->getExpression() 		/* DIExpression* Expr */
-					/* MDNode* Decl=nullptr */
-					/* MDTuple* TemplateParams=nullptr
-					    - not in the version we're using */
-					/* uint32_t AlignInBits=0 */
-				);
-		// errs() << *newDbgInfo << "\n"
-		// 	   << *(newDbgInfo->getVariable()) << "\n";
+        gNew->addDebugInfo(newDbgInfo);
+    }
 
-		gNew->addDebugInfo(newDbgInfo);
-	}
+    if (verboseFlag)
+        errs() << "New duplicate global: " << gNew->getName() << "\n";
 
-	if (verboseFlag)
-		errs() << "New duplicate global: " << gNew->getName() << "\n";
-
-	return gNew;
+    return gNew;
 }
 
 

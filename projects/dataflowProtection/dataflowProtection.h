@@ -164,6 +164,8 @@ private:
   void cloneConstantExpr();
   // Clone globals
   void cloneGlobals(Module& M);
+  void verifyPIECompatibility(Module& M);
+  void makeGlobalsPIECompatible(Module& M);
   GlobalVariable* copyGlobal(Module& M, GlobalVariable* copyFrom, std::string newName);
   void addGlobalRuntimeInit(Module& M);
   // cloning debug information

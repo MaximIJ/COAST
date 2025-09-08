@@ -72,6 +72,9 @@ bool dataflowProtection::run(Module &M, int numClones) {
 	// Must happen before processCommandLine to make sure we don't clone things if not needed
 	processAnnotations(M);
 
+	// Make original globals PIE compatible before cloning
+	makeGlobalsPIECompatible(M);
+
 	// Remove annotations here so they aren't cloned
 	removeAnnotations(M);
 
@@ -111,6 +114,7 @@ bool dataflowProtection::run(Module &M, int numClones) {
 	cloneGlobals(M);
 	cloneConstantExpr();
 	cloneInsns();
+	verifyPIECompatibility(M);
 
 	// Change clones to depend on the duplications
 	updateCallInsns(M);
