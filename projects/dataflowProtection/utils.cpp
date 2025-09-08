@@ -576,6 +576,12 @@ GlobalVariable* dataflowProtection::createGlobalVariable(Module& M,
     newGV->setUnnamedAddr(GlobalValue::UnnamedAddr::Global);
     newGV->setAlignment(Align(byteSz));
 
+	// CRITICAL: Set linkage for PIE compatibility
+	newGV->setLinkage(GlobalValue::LinkageTypes::InternalLinkage);
+
+	// For PIE, ensure proper visibility
+	newGV->setVisibility(GlobalValue::VisibilityTypes::DefaultVisibility);
+
 	return newGV;
 }
 

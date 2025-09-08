@@ -42,12 +42,12 @@ option(COAST_BUILD_LEGACY_PASSES "Build legacy ModulePass plugins (deprecated)" 
 
 add_subdirectory (dataflowProtection)
 add_subdirectory (TMR)
+add_subdirectory (DWC)
 
 if (COAST_BUILD_LEGACY_PASSES)
   add_subdirectory (debugStatements)
   add_subdirectory (exitMarker)
   add_subdirectory (CFCSS)
-  add_subdirectory (DWC)
   add_subdirectory (EDDI)
   add_subdirectory (smallProfile)
 endif()

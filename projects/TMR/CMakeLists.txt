@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 add_llvm_pass_plugin(TMR
-  TMRNewPM.cpp
+  TMR.cpp
   # Include all dataflowProtection sources
   ../dataflowProtection/dataflowProtection.cpp
   ../dataflowProtection/cloning.cpp

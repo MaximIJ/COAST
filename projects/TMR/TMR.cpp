@@ -1,41 +1,47 @@
-#define DEBUG_TYPE "TMR"
-
 #include "../dataflowProtection/dataflowProtection.h"
-
-#include <llvm/Pass.h>
-#include <llvm/PassSupport.h>
-
-#include <llvm/Support/raw_ostream.h>
-#include <llvm/Support/Debug.h>
+#include "llvm/IR/Module.h"
+#include "llvm/IR/PassManager.h"
+#include "llvm/Passes/PassBuilder.h"
+#include "llvm/Passes/PassPlugin.h"
+#include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;
 
-//--------------------------------------------------------------------------//
-// Top level behavior
-//--------------------------------------------------------------------------//
-class TMR : public ModulePass {
-public:
-  static char ID;
-  TMR() : ModulePass(ID) {}
+namespace {
 
-  bool runOnModule(Module &M);
-  void getAnalysisUsage(AnalysisUsage& AU) const ;
+struct TMRPass : PassInfoMixin<TMRPass> {
+  PreservedAnalyses run(Module &M, ModuleAnalysisManager &) {
+    errs() << "TMR Pass starting on module: " << M.getName() << "\n";
+
+    dataflowProtection DP;
+    bool changed = DP.run(M, 3); // TMR mode
+
+    errs() << "TMR Pass finished. Changed: " << (changed ? "YES" : "NO") << "\n";
+
+    return PreservedAnalyses::none();
+  }
 };
 
-char TMR::ID = 0;
-static RegisterPass<TMR> X("TMR",
-		"Full TMR coverage pass", false, false);
+} // namespace
 
-bool TMR::runOnModule(Module &M) {
+extern "C" LLVM_ATTRIBUTE_WEAK PassPluginLibraryInfo llvmGetPassPluginInfo() {
+  errs() << "TMR Plugin Info requested - registering passes\n";
 
-	dataflowProtection DP;
+  return {LLVM_PLUGIN_API_VERSION, "TMR_Plugin", "1.0",
+          [](PassBuilder &PB) {
+            errs() << "Registering TMR pass in pipeline\n";
 
-	DP.run(M,3);
+            PB.registerPipelineParsingCallback(
+                [](StringRef Name, ModulePassManager &MPM,
+                   ArrayRef<PassBuilder::PipelineElement>) {
+                  errs() << "Pipeline callback called with: '" << Name << "'\n";
 
-	return true;
-}
-
-//set pass dependencies
-void TMR::getAnalysisUsage(AnalysisUsage& AU) const {
-	ModulePass::getAnalysisUsage(AU);
+                  if (Name == "tmr") {
+                    errs() << "Adding TMR pass to pipeline\n";
+                    MPM.addPass(TMRPass());
+                    return true;
+                  }
+                  return false;
+                });
+          }};
 }

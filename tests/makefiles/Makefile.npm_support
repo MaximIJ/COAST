@@ -1,7 +1,7 @@
 # New Pass Manager Support Configuration
 
 # Build directory paths
-PROJECT_BUILD_DIR = $(COAST_ROOT)/projects/build/
+PROJECT_BUILD_DIR = $(COAST_ROOT)/build
 TMR_NPM_PLUGIN = $(PROJECT_BUILD_DIR)/TMR/TMR.so
 DWC_NPM_PLUGIN = $(PROJECT_BUILD_DIR)/DWC/DWC.so
 
