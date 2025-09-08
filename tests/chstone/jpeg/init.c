@@ -42,6 +42,18 @@
 #include "decode.h"
 #include "init.h"
 
+int main_result;
+
+// Global variable definitions
+unsigned char *CurHuffReadBuf;
+int OutData_image_width;
+int OutData_image_height;
+int OutData_comp_vpos[RGB_NUM];
+int OutData_comp_hpos[RGB_NUM];
+unsigned char OutData_comp_buf[RGB_NUM][BMP_OUT_SIZE];
+int out_width;
+int out_length;
+
 /*
 +--------------------------------------------------------------------------+
 | * Test Vector (added for CHStone)                                        |

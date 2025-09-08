@@ -2410,7 +2410,13 @@ void dataflowProtection::cloneConstantExpr() {
 			// assert(eNew->isGEPWithNoNotionalOverIndexing());
 			cloneMap[e] = ValuePair(e1, e2);
 		} else {
-//			TODO: what could cause this to fail?
+			// Print debug information about the unsupported constant expression
+			errs() << "Unsupported constant expression type: " << *e << "\n";
+			errs() << "Opcode: " << e->getOpcode() << " (" << Instruction::getOpcodeName(e->getOpcode()) << ")\n";
+			errs() << "Number of operands: " << e->getNumOperands() << "\n";
+			for (unsigned i = 0; i < e->getNumOperands(); i++) {
+				errs() << "  Operand " << i << ": " << *e->getOperand(i) << "\n";
+			}
 			assert(false && "Constant expr to clone not matching expected form");
 		}
 	}

@@ -41,21 +41,22 @@
 #include "global.h"
 #include "decode.h"
 
-int main_result;
+//int main_result;
+extern int main_result;
 /*
  * Output Buffer
  */
-unsigned char *CurHuffReadBuf;
-int OutData_image_width;
-int OutData_image_height;
-int OutData_comp_vpos[RGB_NUM];
-int OutData_comp_hpos[RGB_NUM];
-unsigned char OutData_comp_buf[RGB_NUM][BMP_OUT_SIZE];
-int out_width;
-int out_length;
+extern unsigned char *CurHuffReadBuf;
+extern int OutData_image_width;
+extern int OutData_image_height;
+extern int OutData_comp_vpos[RGB_NUM];
+extern int OutData_comp_hpos[RGB_NUM];
+extern unsigned char OutData_comp_buf[RGB_NUM][BMP_OUT_SIZE];
+extern int out_width;
+extern int out_length;
 
 #define JPEGSIZE 5207
 
-const unsigned char hana_jpg[JPEGSIZE];
+extern const unsigned char hana_jpg[JPEGSIZE];
 
-const unsigned char hana_bmp[RGB_NUM][BMP_OUT_SIZE];
+extern const unsigned char hana_bmp[RGB_NUM][BMP_OUT_SIZE];

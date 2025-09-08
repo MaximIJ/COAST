@@ -38,7 +38,7 @@
  *
  */
 
-unsigned char *CurHuffReadBuf;
+extern unsigned char *CurHuffReadBuf;
 void DecodeHuffMCU(int *out_buf, int num_cmp);
 
 int huff_make_dhuff_tb(int *p_xhtbl_bits, int *p_dhtbl_maxcode,

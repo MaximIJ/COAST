@@ -69,43 +69,43 @@
 #define SF1_1_1 0
 #define SF4_1_1 2
 
-char p_jinfo_data_precision;
-short p_jinfo_image_height;
-short p_jinfo_image_width;
-char p_jinfo_num_components;
-int p_jinfo_smp_fact;
+extern char p_jinfo_data_precision;
+extern short p_jinfo_image_height;
+extern short p_jinfo_image_width;
+extern char p_jinfo_num_components;
+extern int p_jinfo_smp_fact;
 
-char p_jinfo_comps_info_index[NUM_COMPONENT];
-char p_jinfo_comps_info_id[NUM_COMPONENT];
-char p_jinfo_comps_info_h_samp_factor[NUM_COMPONENT];
-char p_jinfo_comps_info_v_samp_factor[NUM_COMPONENT];
-char p_jinfo_comps_info_quant_tbl_no[NUM_COMPONENT];
-char p_jinfo_comps_info_dc_tbl_no[NUM_COMPONENT];
-char p_jinfo_comps_info_ac_tbl_no[NUM_COMPONENT];
+extern char p_jinfo_comps_info_index[NUM_COMPONENT];
+extern char p_jinfo_comps_info_id[NUM_COMPONENT];
+extern char p_jinfo_comps_info_h_samp_factor[NUM_COMPONENT];
+extern char p_jinfo_comps_info_v_samp_factor[NUM_COMPONENT];
+extern char p_jinfo_comps_info_quant_tbl_no[NUM_COMPONENT];
+extern char p_jinfo_comps_info_dc_tbl_no[NUM_COMPONENT];
+extern char p_jinfo_comps_info_ac_tbl_no[NUM_COMPONENT];
 
-unsigned int p_jinfo_quant_tbl_quantval[NUM_QUANT_TBLS][DCTSIZE2];
+extern unsigned int p_jinfo_quant_tbl_quantval[NUM_QUANT_TBLS][DCTSIZE2];
 
-int p_jinfo_dc_xhuff_tbl_bits[NUM_HUFF_TBLS][36];
-int p_jinfo_dc_xhuff_tbl_huffval[NUM_HUFF_TBLS][257];
+extern int p_jinfo_dc_xhuff_tbl_bits[NUM_HUFF_TBLS][36];
+extern int p_jinfo_dc_xhuff_tbl_huffval[NUM_HUFF_TBLS][257];
 
-int p_jinfo_ac_xhuff_tbl_bits[NUM_HUFF_TBLS][36];
-int p_jinfo_ac_xhuff_tbl_huffval[NUM_HUFF_TBLS][257];
+extern int p_jinfo_ac_xhuff_tbl_bits[NUM_HUFF_TBLS][36];
+extern int p_jinfo_ac_xhuff_tbl_huffval[NUM_HUFF_TBLS][257];
 
-int p_jinfo_dc_dhuff_tbl_ml[NUM_HUFF_TBLS];
-int p_jinfo_dc_dhuff_tbl_maxcode[NUM_HUFF_TBLS][36];
-int p_jinfo_dc_dhuff_tbl_mincode[NUM_HUFF_TBLS][36];
-int p_jinfo_dc_dhuff_tbl_valptr[NUM_HUFF_TBLS][36];
+extern int p_jinfo_dc_dhuff_tbl_ml[NUM_HUFF_TBLS];
+extern int p_jinfo_dc_dhuff_tbl_maxcode[NUM_HUFF_TBLS][36];
+extern int p_jinfo_dc_dhuff_tbl_mincode[NUM_HUFF_TBLS][36];
+extern int p_jinfo_dc_dhuff_tbl_valptr[NUM_HUFF_TBLS][36];
 
-int p_jinfo_ac_dhuff_tbl_ml[NUM_HUFF_TBLS];
-int p_jinfo_ac_dhuff_tbl_maxcode[NUM_HUFF_TBLS][36];
-int p_jinfo_ac_dhuff_tbl_mincode[NUM_HUFF_TBLS][36];
-int p_jinfo_ac_dhuff_tbl_valptr[NUM_HUFF_TBLS][36];
+extern int p_jinfo_ac_dhuff_tbl_ml[NUM_HUFF_TBLS];
+extern int p_jinfo_ac_dhuff_tbl_maxcode[NUM_HUFF_TBLS][36];
+extern int p_jinfo_ac_dhuff_tbl_mincode[NUM_HUFF_TBLS][36];
+extern int p_jinfo_ac_dhuff_tbl_valptr[NUM_HUFF_TBLS][36];
 
-int p_jinfo_MCUWidth;
-int p_jinfo_MCUHeight;
-int p_jinfo_NumMCU;
+extern int p_jinfo_MCUWidth;
+extern int p_jinfo_MCUHeight;
+extern int p_jinfo_NumMCU;
 
-unsigned char *p_jinfo_jpeg_data;
+extern unsigned char *p_jinfo_jpeg_data;
 
 // function prototypes
 void decode_start(int *out_data_image_width, int *out_data_image_height,
