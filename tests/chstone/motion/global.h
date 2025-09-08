@@ -78,9 +78,9 @@ void motion_vector
     _ANSI_ARGS_((int *PMV, int *dmvector, int h_r_size, int v_r_size, int dmv,
                  int mvscale, int full_pel_vector));
 
-int System_Stream_Flag;
+extern int System_Stream_Flag;
 
-unsigned char ld_Rdbfr[2048];
-unsigned char *ld_Rdptr, *ld_Rdmax;
-unsigned int ld_Bfr;
-int ld_Incnt;
+extern unsigned char ld_Rdbfr[2048];
+extern unsigned char *ld_Rdptr, *ld_Rdmax;
+extern unsigned int ld_Bfr;
+extern int ld_Incnt;

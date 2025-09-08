@@ -42,6 +42,14 @@
 
 #define Num 2048
 
+/* Global variable definitions */
+unsigned char ld_Rdbfr[2048];
+unsigned char *ld_Rdptr, *ld_Rdmax;
+unsigned int ld_Bfr;
+int ld_Incnt;
+int System_Stream_Flag;
+int evalue;
+
 /*
 +--------------------------------------------------------------------------+
 | * Test Vectors (added for CHStone)                                       |

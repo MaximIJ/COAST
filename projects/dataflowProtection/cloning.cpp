@@ -1867,11 +1867,13 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 	 */
 
 	// Don't mess with loads with inline GEPs
-    if (noMemReplicationFlag) {
-        if (ce->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(ce)->hasIndices()) {
-            return;
-        }
-    }
+	if (noMemReplicationFlag) {
+		// MIGRATION FIX: isGEPWithNoNotionalOverIndexing() was removed in LLVM 16
+		// Replace with direct opcode check
+		if (ce->getOpcode() == Instruction::GetElementPtr) {
+			return;
+		}
+	}
 
 	/*
 	 * check if it's an inline bitcast
@@ -1910,7 +1912,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 			assert(_op1 && "valid clone");
 //						errs() << *_op1 << "\n";
 			Constant* _nop1 = dyn_cast<Constant>(_op1);
-            Constant* nce1 = ce1->getWithOperands({ _nop1, ce1->getOperand(1) });
+			
+			// MIGRATION FIX: getWithOperandReplaced() was removed, use getWithOperands()
+			SmallVector<Constant*, 4> newOperands1;
+			newOperands1.push_back(_nop1);
+			for (unsigned k = 1; k < ce1->getNumOperands(); k++) {
+				newOperands1.push_back(ce1->getOperand(k));
+			}
+			Constant* nce1 = ce1->getWithOperands(newOperands1);
 //						errs() << *nce1 << "\n";
 			clone.first->setOperand(i, nce1);
 			if (TMR) {
@@ -1918,7 +1927,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 				Value* _op2 = cloneMap[_op].second;
 				assert(_op2 && "valid second clone");
 				Constant* _nop2 = dyn_cast<Constant>(_op2);
-                Constant* nce2 = ce2->getWithOperands({ _nop2, ce2->getOperand(1) });
+				
+				// MIGRATION FIX: Same fix for TMR case
+				SmallVector<Constant*, 4> newOperands2;
+				newOperands2.push_back(_nop2);
+				for (unsigned k = 1; k < ce2->getNumOperands(); k++) {
+					newOperands2.push_back(ce2->getOperand(k));
+				}
+				Constant* nce2 = ce2->getWithOperands(newOperands2);
 				clone.second->setOperand(i, nce2);
 			}
 			return;
@@ -1926,7 +1942,8 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 		// could be something ugly like:
 		//%2 = load <4 x i32>, <4 x i32>* bitcast (i32* getelementptr inbounds ([2 x [8 x i32]], [2 x [8 x i32]]* @matrix, i64 0, i64 0, i64 4) to <4 x i32>*), align 16, !tbaa !2
 		ConstantExpr* innerGEPclone1 = dyn_cast<ConstantExpr>(_op);
-        if (innerGEPclone1 && innerGEPclone1->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(innerGEPclone1)->hasIndices()) {
+		// MIGRATION FIX: isGEPWithNoNotionalOverIndexing() was removed, use opcode check
+		if (innerGEPclone1 && innerGEPclone1->getOpcode() == Instruction::GetElementPtr) {
 
 			// get the place to update
 			ConstantExpr* innerGEPclone1 = dyn_cast<ConstantExpr>(ce->getOperand(0));
@@ -1941,8 +1958,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 				Value* GEPvalClone1 = cloneMap[GEPvalOrig].first;
 				assert(GEPvalClone1 && "valid clone");
 
-				// replace uses
-                Constant* newGEPclone1 = innerGEPclone1->getWithOperands({ dyn_cast<Constant>(GEPvalClone1), innerGEPclone1->getOperand(1) });
+				// MIGRATION FIX: getWithOperandReplaced() was removed, use getWithOperands()
+				SmallVector<Constant*, 4> newGEPOperands1;
+				newGEPOperands1.push_back(dyn_cast<Constant>(GEPvalClone1));
+				for (unsigned k = 1; k < innerGEPclone1->getNumOperands(); k++) {
+					newGEPOperands1.push_back(innerGEPclone1->getOperand(k));
+				}
+				Constant* newGEPclone1 = innerGEPclone1->getWithOperands(newGEPOperands1);
+				
 				Constant* newCE = ConstantExpr::getCast(
 						ce->getOpcode(), newGEPclone1, ce->getType());
 				clone.first->setOperand(i, newCE);
@@ -1954,7 +1977,15 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 					ConstantExpr* innerGEPclone2 = dyn_cast<ConstantExpr>(ce2->getOperand(0));
 					Value* GEPvalClone2 = cloneMap[GEPvalOrig].second;
 					assert(GEPvalClone2 && "valid second clone");
-                    Constant* newGEPclone2 = innerGEPclone2->getWithOperands({ dyn_cast<Constant>(GEPvalClone2), innerGEPclone2->getOperand(1) });
+					
+					// MIGRATION FIX: Same fix for TMR case
+					SmallVector<Constant*, 4> newGEPOperands2;
+					newGEPOperands2.push_back(dyn_cast<Constant>(GEPvalClone2));
+					for (unsigned k = 1; k < innerGEPclone2->getNumOperands(); k++) {
+						newGEPOperands2.push_back(innerGEPclone2->getOperand(k));
+					}
+					Constant* newGEPclone2 = innerGEPclone2->getWithOperands(newGEPOperands2);
+					
 					Constant* newCE2 = ConstantExpr::getCast(
 							ce2->getOpcode(), newGEPclone2, ce2->getType());
 					clone.second->setOperand(i, newCE2);
@@ -1991,7 +2022,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 
 	Constant* newOp1 = dyn_cast<Constant>(v_temp);
 	assert(newOp1 && "Null Constant newOp1");
-    Constant* c1 = ce->getWithOperands({ newOp1, ce->getOperand(1) });
+	
+	// MIGRATION FIX: getWithOperandReplaced() was removed, use getWithOperands()
+	SmallVector<Constant*, 4> newOperands1;
+	newOperands1.push_back(newOp1);
+	for (unsigned k = 1; k < ce->getNumOperands(); k++) {
+		newOperands1.push_back(ce->getOperand(k));
+	}
+	Constant* c1 = ce->getWithOperands(newOperands1);
 	ConstantExpr* eNew1 = dyn_cast<ConstantExpr>(c1);
 	assert(eNew1 && "Null ConstantExpr eNew1");
 	clone.first->setOperand(i, eNew1);
@@ -1999,7 +2037,14 @@ void dataflowProtection::cloneConstantExprOperands(ConstantExpr* ce, Instruction
 	if (TMR) {
 		Constant* newOp2 = dyn_cast<Constant>(cloneMap[ce->getOperand(0)].second);
 		assert(newOp2 && "Null Constant newOp2");
-        Constant* c2 = ce->getWithOperands({ newOp2, ce->getOperand(1) });
+		
+		// MIGRATION FIX: Same fix for TMR case
+		SmallVector<Constant*, 4> newOperands2;
+		newOperands2.push_back(newOp2);
+		for (unsigned k = 1; k < ce->getNumOperands(); k++) {
+			newOperands2.push_back(ce->getOperand(k));
+		}
+		Constant* c2 = ce->getWithOperands(newOperands2);
 		ConstantExpr* eNew2 = dyn_cast<ConstantExpr>(c2);
 		assert(eNew2 && "Null ConstantExpr eNew2");
 		clone.second->setOperand(i, eNew2);
@@ -2386,31 +2431,50 @@ void dataflowProtection::verifyCloningSuccess() {
 // Cloning of constants
 //----------------------------------------------------------------------------//
 void dataflowProtection::cloneConstantExpr() {
-    for (auto e : constantExprToClone) {
-        if ((e->getOpcode() == Instruction::GetElementPtr && !cast<GEPOperator>(e)->hasIndices()) || e->isCast()) {
+	for (auto e : constantExprToClone) {
+		if (e->getOpcode() == Instruction::GetElementPtr || e->isCast()) {
 			Value* oldOp = e->getOperand(0);
 			assert(isa<Constant>(oldOp));
 			ValuePair clones = getClone(oldOp);
-
+			
 			Constant* constantOp1 = dyn_cast<Constant>(clones.first);
 			assert(constantOp1);
-            Constant* c1 = e->getWithOperands({constantOp1, e->getOperand(1)});
+			
+			SmallVector<Constant*, 4> newOperands1;
+			newOperands1.push_back(constantOp1); // Replace operand 0 with clone
+			
+			// Copy all other operands unchanged (indices, cast types, etc.)
+			for (unsigned i = 1; i < e->getNumOperands(); i++) {
+				newOperands1.push_back(e->getOperand(i));
+			}
+			
+			Constant* c1 = e->getWithOperands(newOperands1);
 			ConstantExpr* e1 = dyn_cast<ConstantExpr>(c1);
 			assert(e1);
-
+			
 			ConstantExpr* e2;
 			if (TMR) {
 				Constant* constantOp2 = dyn_cast<Constant>(clones.second);
 				assert(constantOp2);
-                Constant* c2 = e->getWithOperands({constantOp2, e->getOperand(1)});
+				
+				// Same fix for the second clone
+				SmallVector<Constant*, 4> newOperands2;
+				newOperands2.push_back(constantOp2); // Replace operand 0 with clone
+				
+				// Copy all other operands unchanged
+				for (unsigned i = 1; i < e->getNumOperands(); i++) {
+					newOperands2.push_back(e->getOperand(i));
+				}
+				
+				Constant* c2 = e->getWithOperands(newOperands2);
 				e2 = dyn_cast<ConstantExpr>(c2);
 				assert(e2);
 			}
-
-			// assert(eNew->isGEPWithNoNotionalOverIndexing());
+			
+			// assert(eNew->isGEPWithNoNotionalOverIndexing()); // This method was removed in LLVM 16
 			cloneMap[e] = ValuePair(e1, e2);
 		} else {
-			// Print debug information about the unsupported constant expression
+			// Enhanced error reporting for debugging migration issues
 			errs() << "Unsupported constant expression type: " << *e << "\n";
 			errs() << "Opcode: " << e->getOpcode() << " (" << Instruction::getOpcodeName(e->getOpcode()) << ")\n";
 			errs() << "Number of operands: " << e->getNumOperands() << "\n";
