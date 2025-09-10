@@ -8,10 +8,22 @@ DWC_NPM_PLUGIN = $(PROJECT_BUILD_DIR)/DWC/DWC.so
 # For LLVM 16+, always use New Pass Manager
 ifneq (,$(wildcard $(TMR_NPM_PLUGIN)))
     # New Pass Manager approach (LLVM 16+)
-    OPT_PLUGIN_FLAGS = -load-pass-plugin=$(TMR_NPM_PLUGIN)
     TMR_PASS_FLAG = -passes=tmr
     DWC_PASS_FLAG = -passes=dwc
     USE_NPM = 1
+    
+    # Load only the plugin that's actually needed to avoid command line option conflicts
+    ifneq (,$(findstring -DWC,$(OPT_PASSES)))
+        # DWC is requested - load only DWC plugin
+        ifneq (,$(wildcard $(DWC_NPM_PLUGIN)))
+            OPT_PLUGIN_FLAGS = -load-pass-plugin=$(DWC_NPM_PLUGIN)
+        else
+            $(error DWC plugin not found at $(DWC_NPM_PLUGIN). Please build the project first with 'make DWC')
+        endif
+    else
+        # Default to TMR plugin
+        OPT_PLUGIN_FLAGS = -load-pass-plugin=$(TMR_NPM_PLUGIN)
+    endif
 else
     $(error TMR plugin not found at $(TMR_NPM_PLUGIN). Please build the project first with 'make TMR')
 endif
