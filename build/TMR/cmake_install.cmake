@@ -54,7 +54,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "TMR" OR NOT CMAKE_INSTALL_COMPONENT)
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/TMR.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/TMR.so"
-         OLD_RPATH "\$ORIGIN/../lib:/usr/lib/llvm-16/lib:"
+         OLD_RPATH "\$ORIGIN/../lib:/usr/lib/llvm-16/lib:/home/m4x/Documents/Work/UA/coast/COAST/build/dataflowProtection:"
          NEW_RPATH "$ORIGIN/../lib")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/TMR.so")
