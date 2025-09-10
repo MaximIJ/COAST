@@ -13,10 +13,13 @@ $(TARGET).bc: $(TARGET).opt.bc
 	@cp $< $@
 	@rm $<
 
+# Only define this rule if NPM support is not being used
+ifeq ($(USE_NPM),)
 $(TARGET).opt.bc: $(TARGET).lbc
 	@echo -e $(COLOR_BLUE)Running through optimizer $(NO_COLOR)
 	@echo "  flags = $(OPT_FLAGS) $(OPT_PASSES)"
 	$(LLVM_OPT) $(OPT_FLAGS) $(OPT_LIBS_LOAD) $(OPT_PASSES) -o $@ $<
+endif
 
 %.ll: %.bc
 	@$(LLVM_DIS) -f $<
@@ -61,3 +64,6 @@ cfg: $(TARGET).opt.ll $(TARGET).clang.ll
 		dot $$file -Tpdf > ./cfg/$$file.opt.pdf ;\
 	done
 	rm -rf *.dot
+
+# Include New Pass Manager support
+include $(LEVEL)/makefiles/Makefile.npm_support
