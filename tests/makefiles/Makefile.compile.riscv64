@@ -1,0 +1,38 @@
+# RISC-V 64-bit Linux configuration for COAST
+# Based on HiFive1 configuration but adapted for generic RISC-V 64-bit Linux
+
+RISCV64_CC = riscv64-linux-gnu-gcc
+
+# Clang flags for RISC-V 64-bit target
+CLANG_FLAGS = -fno-builtin-printf -fno-vectorize -Wall -m64 --target=riscv64
+
+# CFLAGS for compilation
+CFLAGS = -O2 -fno-builtin-printf -g -march=rv64gc -mabi=lp64d -mcmodel=medany
+
+# Linker flags
+LFLAGS = -O2 -fno-builtin-printf -g -march=rv64gc -mabi=lp64d -mcmodel=medany
+
+# Include flags for RISC-V 64-bit Linux
+INC_FLAGS = -I$(LEVEL) -I/usr/riscv64-linux-gnu/include
+
+exe: $(TARGET)
+
+%.clang.bc: %.c $(INC_FILES)
+	$(CLANG) $(CFLAGS) $(CLANG_FLAGS) $(INC_FLAGS) -emit-llvm $< -c -o $@
+
+%.opt.bc: %.clang.bc $(PROJECT_LIBS)
+	$(LLVM_OPT) -load-pass-plugin $(PROJECT_BUILD_DIR)/TMR/TMR.so $(OPT_PASSES) -o $@ $<
+	$(LLVM_DIS) $@
+
+%.o: %.opt.bc
+	$(LLVM_LLC) -march=riscv64 -filetype=obj -o $@ $<
+
+$(TARGET): $(TARGET).o
+	$(RISCV64_CC) $(LFLAGS) $(INC_FLAGS) \
+	$< \
+	-o $(TARGET) \
+	-nostartfiles \
+	-static
+
+clean:
+	rm -f $(TARGET) *.o *.ll *.bc

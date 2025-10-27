@@ -1,5 +1,8 @@
 benchmarks:
   - path: matrixMultiply
+  
+  - path: matrixMul_tmr
+    re: "Test completed with 0 errors."
 
 OPT_PASSES:
   - ""

@@ -9,11 +9,10 @@ LLVM_LLC 	:= llc-16
 LLVM_LINK	:= llvm-link-16
 LLVM_MC	  	:= llvm-mc-16
 
-PROJECT_BUILD_DIR = $(COAST_ROOT)/projects/build/
+PROJECT_BUILD_DIR = $(COAST_ROOT)/build/
 rwildcard=$(wildcard $1$2)$(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 PROJECT_LIBS := $(call rwildcard,$(PROJECT_BUILD_DIR),*.so)
-OPT_LIBS_LOAD = -load $(PROJECT_BUILD_DIR)/errorBlocks/ErrorBlocks.so \
--load $(PROJECT_BUILD_DIR)/dataflowProtection/DataflowProtection.so $(foreach lib, $(PROJECT_LIBS) , -load $(lib))
+OPT_LIBS_LOAD = -load $(PROJECT_BUILD_DIR)/TMR/TMR.so
 
 INC_FILES=$(wildcard *.inc)
 
@@ -53,6 +52,10 @@ include $(LEVEL)/makefiles/Makefile.compile.hercules
 else ifeq ($(BOARD), $(BOARD_MSP432))
 
 include $(LEVEL)/makefiles/Makefile.compile.msp432
+
+else ifeq ($(BOARD), $(BOARD_RISCV64))
+
+include $(LEVEL)/makefiles/Makefile.compile.riscv64
 
 else
 
