@@ -21,11 +21,11 @@ exe: $(TARGET)
 	$(CLANG) $(CFLAGS) $(CLANG_FLAGS) $(INC_FLAGS) -emit-llvm $< -c -o $@
 
 %.opt.bc: %.clang.bc $(PROJECT_LIBS)
-	$(LLVM_OPT) -load-pass-plugin $(PROJECT_BUILD_DIR)/TMR/TMR.so $(OPT_PASSES) -o $@ $<
+	$(LLVM_OPT) -load-pass-plugin $(PROJECT_BUILD_DIR)/TMR/TMR.so -load-pass-plugin $(PROJECT_BUILD_DIR)/DWC/DWC.so $(OPT_PASSES) -o $@ $<
 	$(LLVM_DIS) $@
 
 %.o: %.opt.bc
-	$(LLVM_LLC) -march=riscv64 -filetype=obj -o $@ $<
+	$(LLVM_LLC) -march=riscv64 -mattr=-m -filetype=obj -o $@ $<
 
 $(TARGET): $(TARGET).o
 	$(RISCV64_CC) $(LFLAGS) $(INC_FLAGS) \

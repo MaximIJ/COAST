@@ -25,3 +25,27 @@ add_llvm_loadable_module(DataflowProtection
     inspection.cpp
     dataflowProtection.h
 )
+
+# Create new pass manager plugin for DataflowProtection
+add_llvm_pass_plugin(DataflowProtectionNewPM
+    DataflowProtectionNewPM.cpp
+    LINK_COMPONENTS
+        Core
+        IRReader
+        TransformUtils
+        Analysis
+        Support
+        Passes
+)
+
+# Link against the shared dataflowProtection library
+target_link_libraries(DataflowProtectionNewPM PRIVATE DataflowProtectionLib)
+
+# Add include directory for dataflowProtection headers
+target_include_directories(DataflowProtectionNewPM PRIVATE .)
+
+# Ensure proper symbol visibility for plugin loading
+set_target_properties(DataflowProtectionNewPM PROPERTIES
+    CXX_VISIBILITY_PRESET default
+    VISIBILITY_INLINES_HIDDEN NO
+)

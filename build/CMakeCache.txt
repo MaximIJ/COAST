@@ -304,6 +304,9 @@ LLVM_BUILD_INSTRUMENTED:STRING=OFF
 //Build LLVM and tools with Code Coverage instrumentation
 LLVM_BUILD_INSTRUMENTED_COVERAGE:BOOL=OFF
 
+//Statically link DataflowProtectionNewPM into tools (if available)
+LLVM_DATAFLOWPROTECTIONNEWPM_LINK_INTO_TOOLS:BOOL=OFF
+
 //Statically link DataflowProtection into tools (if available)
 LLVM_DATAFLOWPROTECTION_LINK_INTO_TOOLS:BOOL=OFF
 

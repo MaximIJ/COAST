@@ -145,6 +145,21 @@ void quick_sort (int *A, int len) {
 
 void quick_sort_rev (int *a, int n) {
   //TODO: user enters code
+    if (n < 2) return;
+
+    int pivot = a[n / 2];
+    int i, j;
+    for (i = 0, j = n - 1; ; i++, j--) {
+        while (a[i] > pivot) i++;
+        while (a[j] < pivot) j--;
+
+        if (i >= j) break;
+        int temp = a[i];
+        a[i]     = a[j];
+        a[j]     = temp;
+    }
+    quick_sort_rev(a, i);
+    quick_sort_rev(a + i, n - i);
 }
 
 int checker(int golden_array[], int dut_array[], int sub_test) {
