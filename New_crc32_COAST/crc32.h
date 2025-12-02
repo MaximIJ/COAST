@@ -19,4 +19,3 @@ unsigned int stop_timer(void);
 void send_status(unsigned int cycles);
 
 #endif /* CRC32_H */
-

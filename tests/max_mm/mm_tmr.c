@@ -22,12 +22,7 @@ void testing(void)
         for (j = 0; j < MATRIX_SIZE; j++) {
             sum = 0;
             for ( k = 0; k < MATRIX_SIZE; k++) {
-                if (i == 6 && j == 6 && k == 6) {
-                    sum = -1; // Fault injection point
-                } else {
-                    sum += matrix_a[i][k] * matrix_b[k][j];
-                }
-                //sum += matrix_a[i][k] * matrix_b[k][j];
+                sum += matrix_a[i][k] * matrix_b[k][j];
             }
             matrix_c[i][j] = sum;
         }
