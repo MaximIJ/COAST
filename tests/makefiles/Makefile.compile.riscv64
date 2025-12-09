@@ -25,7 +25,7 @@ exe: $(TARGET)
 	$(LLVM_DIS) $@
 
 %.o: %.opt.bc
-	$(LLVM_LLC) -march=riscv64 -mattr=-m -filetype=obj -o $@ $<
+	$(LLVM_LLC) -march=riscv64 -mattr=+m,+a,+f,+d,+c -filetype=obj -o $@ $<
 
 $(TARGET): $(TARGET).o
 	$(RISCV64_CC) $(LFLAGS) $(INC_FLAGS) \

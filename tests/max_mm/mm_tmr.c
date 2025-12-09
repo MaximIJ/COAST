@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../COAST.h"
-#define MATRIX_SIZE 64
+#define MATRIX_SIZE 32
 #define TMR_ERROR_CNT
 
 #if INJECT_FAULTS

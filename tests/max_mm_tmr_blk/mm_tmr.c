@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../COAST.h"
-#define MATRIX_SIZE 64
+#define MATRIX_SIZE 20
 #define TMR_ERROR_CNT
-#define BLK_SIZE 8
+#define BLK_SIZE 5
 
 #if INJECT_FAULTS
 #include <time.h>

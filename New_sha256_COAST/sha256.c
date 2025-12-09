@@ -233,7 +233,6 @@ void init(void)
 
 void test(void)
 {
-    // Call the assembly SHA256 function
     sha256();
 }
 

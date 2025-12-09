@@ -15,17 +15,28 @@ include $(LEVEL)/makefiles/Makefile.common
 # Override the RISC-V compiler in the included Makefile.compile.riscv64
 RISCV64_CC = $(CUSTOM_RISCV_CC)
 
+# Override CFLAGS to change -march from rv64gc to rv64imafd
+CFLAGS = -O2 -fno-builtin-printf -g -march=rv64imafd -mabi=lp64d -mcmodel=medany
+
+# Override CLANG_FLAGS: change target to riscv64-unknown-linux-gnu, add -fno-plt, remove -m64 and duplicate -fno-builtin-printf
+CLANG_FLAGS = --target=riscv64-unknown-linux-gnu -fno-vectorize -fno-plt -Wall
+
+# Mark .bc files as precious/secondary to prevent Make from automatically deleting them
+# (Make treats intermediate files as deletable, but we want to keep these for debugging)
+.PRECIOUS: $(TARGET).clang.bc $(TARGET).opt.bc
+.SECONDARY: %.clang.bc %.opt.bc
+
 # Custom target to generate assembly file
 # Use DEBUG=1 to keep debug info, or DEBUG=0/unset to strip it (removes .loc and .uleb128)
 # M extension is disabled (removes mul/mulw)
 assembly: $(TARGET).o
 ifeq ($(DEBUG),1)
 	@echo "Generating assembly with debug info..."
-	llc-16 -march=riscv64 -mattr=-m -filetype=asm -o $(TARGET)_custom.s $(TARGET).opt.ll
+	llc-16 -march=riscv64 -mattr=+m,+a,+f,+d,+c -filetype=asm -o $(TARGET)_custom.s $(TARGET).opt.ll
 else
 	@echo "Generating assembly without debug info..."
 	opt-16 -strip-debug $(TARGET).opt.ll -o $(TARGET).opt.no-debug.ll
-	llc-16 -march=riscv64 -mattr=-m -filetype=asm -o $(TARGET)_custom.s $(TARGET).opt.no-debug.ll
+	llc-16 -march=riscv64 -mattr=+m,+a,+f,+d,+c -filetype=asm -o $(TARGET)_custom.s $(TARGET).opt.no-debug.ll
 endif
 	@echo "Assembly file generated: $(TARGET)_custom.s"
 
@@ -39,6 +50,7 @@ clean-custom:
 	@echo "Cleaned custom build files"
 
 # Override the default clean to include custom files
+# Note: .bc files are preserved (not deleted) for debugging/inspection
 clean: clean-custom
-	rm -f *.o *.ll *.bc *.no-debug.ll
-	@echo "Cleaned all build files"
+	rm -f *.o *.ll *.no-debug.ll
+	@echo "Cleaned all build files (preserved .bc files)"
